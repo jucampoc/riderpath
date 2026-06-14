@@ -1,26 +1,356 @@
+/* ============================================================
+   Riderpath · globals.css
+   Fuente única de verdad del design system en Next.js.
+   Orden: Tailwind → Google Fonts → @font-face → tokens → base.
+   ============================================================ */
+
 @import "tailwindcss";
 
+/* ============================================================
+   Google Fonts — Barlow, Barlow Condensed, Kaushan Script,
+   JetBrains Mono. Amazing Kids se sirve desde /public/fonts/.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,600&family=Kaushan+Script&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ============================================================
+   Amazing Kids — wordmark self-hosted.
+   Coloca el archivo AmazingKids.ttf en /public/fonts/
+   y esta regla lo cargará correctamente en Next.js.
+   USAR ÚNICAMENTE para el nombre "Riderpath". Nunca en body.
+   ============================================================ */
+@font-face {
+  font-family: 'Amazing Kids';
+  src: url('/fonts/AmazingKids.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   Riderpath · Color tokens
+   Paleta dark-first. Negros asfalto, rojo escarlata de marca,
+   ámbar energético, neutros cálidos para superficies claras.
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---- Rojo de marca ---- */
+  --rp-red:           #D02127;
+  --rp-red-bright:    #E63A40;
+  --rp-red-deep:      #9E1B26;
+  --rp-red-ink:       #5E121A;
+  --rp-red-soft:      #F4D2D3;
+
+  /* ---- Asfalto (negros cálidos) ---- */
+  --rp-asphalt-900:   #0E0E10;
+  --rp-asphalt-850:   #141417;
+  --rp-asphalt-800:   #1A1A1E;
+  --rp-asphalt-750:   #212127;
+  --rp-asphalt-700:   #2A2A31;
+  --rp-asphalt-600:   #3A3A43;
+  --rp-asphalt-500:   #50505B;
+
+  /* ---- Neutros cálidos (papel / arena) ---- */
+  --rp-paper:         #F4F2ED;
+  --rp-paper-dim:     #E7E3DA;
+  --rp-sand:          #C9BBA3;
+  --rp-white:         #FFFFFF;
+  --rp-black:         #000000;
+
+  /* ---- Texto sobre fondo oscuro ---- */
+  --rp-ink-100:       #F6F5F2;
+  --rp-ink-300:       #C3C1BC;
+  --rp-ink-500:       #908E8B;
+  --rp-ink-700:       #65646A;
+
+  /* ---- Ámbar secundario (faros / desierto) ---- */
+  --rp-amber:         #E8A33B;
+  --rp-amber-deep:    #B97A1E;
+
+  /* ---- Semánticos ---- */
+  --rp-success:       #46B26C;
+  --rp-warning:       #E8A33B;
+  --rp-danger:        #E5484D;
+  --rp-info:          #4F93C4;
+
+  /* ============================================================
+     Aliases semánticos — usar estos en componentes.
+     Tema oscuro como default.
+     ============================================================ */
+
+  /* Superficies */
+  --surface-base:     var(--rp-asphalt-900);
+  --surface-raised:   var(--rp-asphalt-800);
+  --surface-card:     var(--rp-asphalt-750);
+  --surface-hover:    var(--rp-asphalt-700);
+  --surface-inset:    var(--rp-asphalt-850);
+  --surface-inverse:  var(--rp-paper);
+
+  /* Texto */
+  --text-strong:      var(--rp-ink-100);
+  --text-body:        var(--rp-ink-300);
+  --text-muted:       var(--rp-ink-500);
+  --text-faint:       var(--rp-ink-700);
+  --text-on-red:      var(--rp-white);
+  --text-on-light:    var(--rp-asphalt-900);
+
+  /* Marca / interactivos */
+  --brand:            var(--rp-red);
+  --brand-hover:      var(--rp-red-bright);
+  --brand-press:      var(--rp-red-deep);
+  --brand-contrast:   var(--rp-white);
+  --accent:           var(--rp-amber);
+
+  /* Bordes */
+  --border-subtle:    rgba(255,255,255,0.08);
+  --border-default:   rgba(255,255,255,0.14);
+  --border-strong:    var(--rp-asphalt-600);
+  --border-brand:     var(--rp-red);
+
+  /* Focus */
+  --focus-ring:       rgba(208,33,39,0.55);
+
+  /* Overlay */
+  --overlay-scrim:    rgba(8,8,9,0.72);
+
+  /* ============================================================
+     Riderpath · Tipografía
+     Display   = Barlow Condensed (uppercase, deportivo)
+     Wordmark  = Amazing Kids (solo para el nombre "Riderpath")
+     Body / UI = Barlow
+     Script    = Kaushan Script (flourish decorativo)
+     Mono      = JetBrains Mono (datos de ruta / coordenadas)
+     ============================================================ */
+
+  --font-wordmark: 'Amazing Kids', 'Kaushan Script', cursive;
+  --font-display:  'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-sans:     'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-script:   'Kaushan Script', 'Brush Script MT', cursive;
+  --font-mono:     'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Pesos */
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+  --fw-bold:      700;
+
+  /* Escala tipográfica fluida (clamp: min, vw, max) */
+  --fs-display:   clamp(3.25rem, 1.5rem + 7vw, 6.5rem);
+  --fs-h1:        clamp(2.5rem, 1.6rem + 4vw, 4rem);
+  --fs-h2:        clamp(2rem, 1.4rem + 2.6vw, 3rem);
+  --fs-h3:        clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --fs-h4:        clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --fs-lead:      clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+  --fs-body:      1rem;
+  --fs-sm:        0.875rem;
+  --fs-xs:        0.75rem;
+  --fs-eyebrow:   0.8125rem;
+
+  /* Altura de línea */
+  --lh-tight:     1.02;
+  --lh-snug:      1.15;
+  --lh-heading:   1.1;
+  --lh-body:      1.6;
+  --lh-relaxed:   1.75;
+
+  /* Tracking */
+  --tracking-display: -0.01em;
+  --tracking-tight:   -0.005em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.04em;
+  --tracking-eyebrow: 0.18em;
+
+  /* ============================================================
+     Riderpath · Espaciado, radios, sombras, movimiento, layout
+     Grilla base de 4px.
+     ============================================================ */
+
+  /* Escala de espaciado */
+  --space-0:   0;
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.5rem;
+  --space-6:   2rem;
+  --space-7:   3rem;
+  --space-8:   4rem;
+  --space-9:   6rem;
+  --space-10:  8rem;
+
+  /* Radios — modernos, ligeramente rudos */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   26px;
+  --radius-pill: 999px;
+
+  /* Bordes */
+  --border-w:        1px;
+  --border-w-strong: 2px;
+
+  /* Sombras */
+  --shadow-sm:   0 1px 2px rgba(0,0,0,0.35);
+  --shadow-md:   0 6px 18px rgba(0,0,0,0.40);
+  --shadow-lg:   0 18px 44px rgba(0,0,0,0.50);
+  --shadow-xl:   0 32px 80px rgba(0,0,0,0.58);
+  --glow-red:    0 8px 28px rgba(208,33,39,0.42);
+  --glow-red-sm: 0 4px 14px rgba(208,33,39,0.38);
+  --edge-light:  inset 0 1px 0 rgba(255,255,255,0.06);
+
+  /* Movimiento */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-snap:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast:    120ms;
+  --dur-base:    200ms;
+  --dur-slow:    360ms;
+
+  /* Layout */
+  --container:       1200px;
+  --container-wide:  1360px;
+  --container-prose: 720px;
+  --gutter:          clamp(1.25rem, 4vw, 3rem);
+  --header-h:        72px;
+
+  /* Z-index */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 1000;
+  --z-modal:   1100;
+  --z-toast:   1200;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   Scope de luz — aplicar con class="rp-light" en un contenedor.
+   ============================================================ */
+.rp-light {
+  --surface-base:    var(--rp-paper);
+  --surface-raised:  var(--rp-white);
+  --surface-card:    var(--rp-white);
+  --surface-hover:   var(--rp-paper-dim);
+  --surface-inset:   var(--rp-paper-dim);
+  --surface-inverse: var(--rp-asphalt-900);
+
+  --text-strong:     var(--rp-asphalt-900);
+  --text-body:       #36353A;
+  --text-muted:      #6E6C70;
+  --text-faint:      #9A9897;
+  --text-on-light:   var(--rp-asphalt-900);
+
+  --border-subtle:   rgba(14,14,16,0.08);
+  --border-default:  rgba(14,14,16,0.14);
+  --border-strong:   rgba(14,14,16,0.22);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   Riderpath · Reset / base
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  background: var(--surface-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-display);
+  color: var(--text-strong);
+  text-transform: uppercase;
+  margin: 0 0 0.4em;
+  text-wrap: balance;
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); letter-spacing: var(--tracking-tight); }
+
+p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--brand-hover);
+}
+
+strong {
+  color: var(--text-strong);
+  font-weight: var(--fw-semibold);
+}
+
+::selection {
+  background: var(--rp-red);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* ============================================================
+   Helpers de marca
+   ============================================================ */
+
+/* Eyebrow — etiqueta de sección en mayúsculas */
+.rp-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+/* Script decorativo — solo para taglines o acentos */
+.rp-script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+/* Wordmark — SOLO para el nombre "Riderpath" */
+.rp-wordmark {
+  font-family: var(--font-wordmark);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+/* Mono — datos de ruta, coordenadas, estadísticas */
+.rp-mono {
+  font-family: var(--font-mono);
+}
+
+/* Franja de sección — línea roja decorativa */
+.rp-stripe {
+  display: inline-block;
+  width: 56px;
+  height: 6px;
+  background: var(--rp-red);
+  border-radius: var(--radius-pill);
 }
