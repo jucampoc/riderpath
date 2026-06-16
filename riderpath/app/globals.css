@@ -1,10 +1,8 @@
 /* ============================================================
    Riderpath · globals.css
    Fuente única de verdad del design system en Next.js.
-   Orden: Tailwind → Google Fonts → @font-face → tokens → base.
+   Orden: Google Fonts → @font-face → Tailwind → tokens → base.
    ============================================================ */
-
-@import "tailwindcss";
 
 /* ============================================================
    Google Fonts — Barlow, Barlow Condensed, Kaushan Script,
@@ -25,6 +23,8 @@
   font-style: normal;
   font-display: swap;
 }
+
+@import "tailwindcss";
 
 /* ============================================================
    Riderpath · Color tokens
