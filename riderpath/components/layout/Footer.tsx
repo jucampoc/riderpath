@@ -195,7 +195,7 @@ export default function Footer() {
               color: 'var(--text-faint)',
             }}
           >
-            © {new Date().getFullYear()} Riderpath · Biitzu S.A.S. de C.V. · Hecho en México 🇲🇽
+            © {new Date().getFullYear()} Riderpath · Biitzu S.A.S. de C.V.
           </span>
 
           <div style={{ display: 'flex', gap: 'var(--space-6)' }}>
