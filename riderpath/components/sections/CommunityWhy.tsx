@@ -1,26 +1,129 @@
 'use client'
 
+import { useEffect, useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
 const STATS = [
   {
-    value: '+500',
-    label: 'Rodadas compartidas',
-    note:  'y contando',
+    target: 500,
+    prefix: '+',
+    suffix: '',
+    label:  'Rodadas compartidas',
+    note:   'y contando',
   },
   {
-    value: '+50',
-    label: 'Ciudades conectadas',
-    note:  'en México y Latinoamérica',
+    target: 50,
+    prefix: '+',
+    suffix: '',
+    label:  'Ciudades conectadas',
+    note:   'en México y Latinoamérica',
   },
   {
-    value: '100%',
-    label: 'Pasión por el camino',
-    note:  'el único requisito para entrar',
+    target: 100,
+    prefix: '',
+    suffix: '%',
+    label:  'Pasión por el camino',
+    note:   'el único requisito para entrar',
   },
 ]
 
 export function CommunityWhy() {
+  const sectionRef   = useRef<HTMLElement>(null)
+  const stripeRef    = useRef<HTMLSpanElement>(null)
+  const eyebrowRef   = useRef<HTMLParagraphElement>(null)
+  const headingRef   = useRef<HTMLHeadingElement>(null)
+  const paragraphRef = useRef<HTMLParagraphElement>(null)
+  const rightColRef  = useRef<HTMLDivElement>(null)
+  const numRefs      = useRef<(HTMLSpanElement | null)[]>([])
+  const labelRefs    = useRef<(HTMLDivElement | null)[]>([])
+
+  // Hide animated elements before first paint to prevent FOUC
+  useLayoutEffect(() => {
+    gsap.set(stripeRef.current, { scaleX: 0, transformOrigin: 'left' })
+    gsap.set([eyebrowRef.current, headingRef.current, paragraphRef.current], { opacity: 0, y: 20 })
+    labelRefs.current.forEach((el) => { if (el) gsap.set(el, { opacity: 0, y: 12 }) })
+  }, [])
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+
+      // — Left column: stripe draw + text fade-up —
+      const leftTl = gsap.timeline({
+        scrollTrigger: {
+          trigger:       sectionRef.current,
+          start:         'top 75%',
+          toggleActions: 'play reverse play reverse',
+        },
+      })
+
+      leftTl
+        .to(stripeRef.current,    { scaleX: 1,              duration: 0.7, ease: 'power3.out' })
+        .to(eyebrowRef.current,   { opacity: 1, y: 0,       duration: 0.7, ease: 'power3.out' }, '-=0.35')
+        .to(headingRef.current,   { opacity: 1, y: 0,       duration: 0.8, ease: 'power3.out' }, '-=0.3')
+        .to(paragraphRef.current, { opacity: 1, y: 0,       duration: 0.8, ease: 'power3.out' }, '-=0.4')
+
+      // — Right column: staggered count-up with label fade —
+      const rightTl = gsap.timeline({
+        scrollTrigger: {
+          trigger:       rightColRef.current,
+          start:         'top 80%',
+          toggleActions: 'play reverse play reverse',
+        },
+      })
+
+      STATS.forEach(({ target, prefix, suffix }, i) => {
+        const numEl   = numRefs.current[i]
+        const labelEl = labelRefs.current[i]
+        if (!numEl) return
+
+        const proxy     = { n: 0 }
+        const finalText = `${prefix}${target}${suffix}`
+        const position  = i * 0.2          // stagger start time in the timeline
+
+        // Counter tween: proxy object drives text updates
+        rightTl.to(proxy, {
+          n:        target,
+          duration: 1.5,
+          ease:     'power2.out',
+          onUpdate() {
+            // Show raw integer during counting; no prefix/suffix yet
+            numEl.textContent = String(Math.round(proxy.n))
+          },
+          onComplete() {
+            // Attach prefix/suffix only when counting finishes
+            numEl.textContent = finalText
+          },
+          onReverseComplete() {
+            // Reset display cleanly to bare zero when fully reversed
+            proxy.n = 0
+            numEl.textContent = '0'
+          },
+        }, position)
+
+        // Label fades in at the same time as its counter starts
+        if (labelEl) {
+          rightTl.to(labelEl, {
+            opacity:  1,
+            y:        0,
+            duration: 0.8,
+            ease:     'power2.out',
+          }, position)
+        }
+      })
+
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section style={{ padding: 'var(--space-9) 0', background: 'var(--surface-base)' }}>
+    <section
+      ref={sectionRef}
+      style={{ padding: 'var(--space-9) 0', background: 'var(--surface-base)' }}
+    >
       <div
         style={{
           maxWidth: 'var(--container)',
@@ -28,28 +131,29 @@ export function CommunityWhy() {
           padding:  '0 var(--gutter)',
         }}
       >
-        {/* Two-column layout: text left, stats right */}
         <div
           className="grid gap-8"
           style={{ gridTemplateColumns: '3fr 2fr', alignItems: 'center' }}
         >
 
-          {/* Left column: eyebrow + heading + body */}
+          {/* Left column */}
           <div>
             <span
+              ref={stripeRef}
               className="rp-stripe"
               style={{ display: 'block', marginBottom: 'var(--space-4)' }}
             />
 
-            <p className="rp-eyebrow" style={{ marginBottom: 'var(--space-4)' }}>
+            <p ref={eyebrowRef} className="rp-eyebrow" style={{ marginBottom: 'var(--space-4)' }}>
               Por qué importa
             </p>
 
-            <h2 style={{ marginBottom: 'var(--space-6)', maxWidth: '22ch' }}>
+            <h2 ref={headingRef} style={{ marginBottom: 'var(--space-6)', maxWidth: '22ch' }}>
               La tecnología es la herramienta, la comunidad es el corazón
             </h2>
 
             <p
+              ref={paragraphRef}
               style={{
                 fontSize:   'var(--fs-lead)',
                 color:      'var(--text-body)',
@@ -64,6 +168,7 @@ export function CommunityWhy() {
 
           {/* Right column: stat blocks */}
           <div
+            ref={rightColRef}
             style={{
               display:       'flex',
               flexDirection: 'column',
@@ -72,7 +177,7 @@ export function CommunityWhy() {
               paddingLeft:   'var(--space-8)',
             }}
           >
-            {STATS.map(({ value, label, note }, i) => (
+            {STATS.map(({ label, note }, i) => (
               <div
                 key={label}
                 style={{
@@ -81,6 +186,7 @@ export function CommunityWhy() {
                   borderBottom:  i === STATS.length - 1 ? 'none' : '1px solid var(--border-subtle)',
                 }}
               >
+                {/* Number display — driven by GSAP proxy via ref */}
                 <p
                   style={{
                     fontFamily:    'var(--font-mono)',
@@ -92,33 +198,36 @@ export function CommunityWhy() {
                     margin:        '0 0 var(--space-2)',
                   }}
                 >
-                  {value}
+                  <span ref={(el) => { numRefs.current[i] = el }}>0</span>
                 </p>
 
-                <p
-                  style={{
-                    fontFamily:    'var(--font-sans)',
-                    fontSize:      'var(--fs-body)',
-                    fontWeight:    'var(--fw-semibold)',
-                    color:         'var(--text-strong)',
-                    textTransform: 'uppercase',
-                    letterSpacing: 'var(--tracking-wide)',
-                    margin:        '0 0 var(--space-1)',
-                  }}
-                >
-                  {label}
-                </p>
+                {/* Label + note group — fades in alongside its counter */}
+                <div ref={(el) => { labelRefs.current[i] = el }}>
+                  <p
+                    style={{
+                      fontFamily:    'var(--font-sans)',
+                      fontSize:      'var(--fs-body)',
+                      fontWeight:    'var(--fw-semibold)',
+                      color:         'var(--text-strong)',
+                      textTransform: 'uppercase',
+                      letterSpacing: 'var(--tracking-wide)',
+                      margin:        '0 0 var(--space-1)',
+                    }}
+                  >
+                    {label}
+                  </p>
 
-                <p
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize:   'var(--fs-xs)',
-                    color:      'var(--text-muted)',
-                    margin:     0,
-                  }}
-                >
-                  {note}
-                </p>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize:   'var(--fs-xs)',
+                      color:      'var(--text-muted)',
+                      margin:     0,
+                    }}
+                  >
+                    {note}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
