@@ -63,8 +63,7 @@ export default function Footer() {
                 src="/images/logos/icono1024x1024.png"
                 alt="Riderpath"
                 width={130}
-                height={70}
-                style={{ width: '130px', height: 'auto' }}
+                height={130}
               />
             </div>
 
