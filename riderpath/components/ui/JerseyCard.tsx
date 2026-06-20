@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
+import gsap from 'gsap'
 
 export interface JerseyCardProps {
   name:        string
@@ -13,10 +14,38 @@ export interface JerseyCardProps {
 type Side = 'front' | 'back'
 
 export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardProps) {
-  const [side, setSide] = useState<Side>('front')
+  const [side, setSide]           = useState<Side>('front')
+  const [animating, setAnimating] = useState(false)
+  const frontRef                  = useRef<HTMLDivElement>(null)
+  const backRef                   = useRef<HTMLDivElement>(null)
 
-  const currentImage = side === 'front' ? frontImage : backImage
-  const genderLabel  = gender === 'hombre' ? 'Hombre' : 'Mujer'
+  const genderLabel = gender === 'hombre' ? 'Hombre' : 'Mujer'
+
+  // Set initial GSAP state before first paint: front visible, back hidden
+  useLayoutEffect(() => {
+    gsap.set(frontRef.current, { opacity: 1, scale: 1 })
+    gsap.set(backRef.current,  { opacity: 0, scale: 0.96 })
+  }, [])
+
+  const flip = (target: Side) => {
+    if (animating || target === side) return
+    setAnimating(true)
+
+    const outEl = target === 'back' ? frontRef.current : backRef.current
+    const inEl  = target === 'back' ? backRef.current  : frontRef.current
+
+    // Ensure the incoming layer starts from the correct hidden state
+    gsap.set(inEl, { opacity: 0, scale: 0.96 })
+
+    gsap.timeline({
+      onComplete: () => {
+        setSide(target)
+        setAnimating(false)
+      },
+    })
+      .to(outEl, { opacity: 0, scale: 0.96, duration: 0.22, ease: 'power2.in' })
+      .to(inEl,  { opacity: 1, scale: 1,    duration: 0.28, ease: 'power2.out' }, '-=0.05')
+  }
 
   return (
     <article
@@ -28,6 +57,20 @@ export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardPr
         display:       'flex',
         flexDirection: 'column',
       }}
+      onMouseEnter={(e) => gsap.to(e.currentTarget, {
+        scale:     1.03,
+        y:         -4,
+        boxShadow: '0 18px 44px rgba(0,0,0,0.50)',
+        duration:  0.3,
+        ease:      'power2.out',
+      })}
+      onMouseLeave={(e) => gsap.to(e.currentTarget, {
+        scale:     1,
+        y:         0,
+        boxShadow: '0 6px 18px rgba(0,0,0,0.40)',
+        duration:  0.3,
+        ease:      'power2.out',
+      })}
     >
       {/* Image area */}
       <div
@@ -38,15 +81,29 @@ export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardPr
           overflow:    'hidden',
         }}
       >
-        <Image
-          src={currentImage}
-          alt={`${name} — ${side === 'front' ? 'Frente' : 'Espalda'}`}
-          fill
-          style={{ objectFit: 'cover' }}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-        />
+        {/* Front image layer — always mounted, GSAP controls opacity */}
+        <div ref={frontRef} style={{ position: 'absolute', inset: 0 }}>
+          <Image
+            src={frontImage}
+            alt={`${name} — Frente`}
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          />
+        </div>
 
-        {/* Frente / Espalda toggle — overlaid at bottom of image */}
+        {/* Back image layer — always mounted, GSAP controls opacity */}
+        <div ref={backRef} style={{ position: 'absolute', inset: 0 }}>
+          <Image
+            src={backImage}
+            alt={`${name} — Espalda`}
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          />
+        </div>
+
+        {/* Toggle — pointer events disabled during animation to block rapid clicks */}
         <div
           style={{
             position:       'absolute',
@@ -60,6 +117,8 @@ export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardPr
             borderRadius:   'var(--radius-pill)',
             padding:        2,
             border:         '1px solid rgba(255,255,255,0.12)',
+            pointerEvents:  animating ? 'none' : 'auto',
+            zIndex:         1,
           }}
         >
           {(['front', 'back'] as Side[]).map((s) => {
@@ -69,7 +128,7 @@ export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardPr
               <button
                 key={s}
                 type="button"
-                onClick={() => setSide(s)}
+                onClick={() => flip(s)}
                 aria-pressed={active}
                 style={{
                   fontFamily:    'var(--font-sans)',
@@ -96,10 +155,10 @@ export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardPr
       {/* Card body: name + gender */}
       <div
         style={{
-          padding: 'var(--space-4) var(--space-5)',
-          display: 'flex',
+          padding:       'var(--space-4) var(--space-5)',
+          display:       'flex',
           flexDirection: 'column',
-          gap:     'var(--space-1)',
+          gap:           'var(--space-1)',
         }}
       >
         <p

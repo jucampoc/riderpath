@@ -1,4 +1,11 @@
+'use client'
+
+import { useEffect, useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { JerseyCard, type JerseyCardProps } from '@/components/ui/JerseyCard'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const JERSEYS: JerseyCardProps[] = [
   {
@@ -34,15 +41,68 @@ const JERSEYS: JerseyCardProps[] = [
 ]
 
 export function FashionCatalog() {
+  const sectionRef  = useRef<HTMLElement>(null)
+  const eyebrowRef  = useRef<HTMLParagraphElement>(null)
+  const headingRef  = useRef<HTMLHeadingElement>(null)
+  const cardRefs    = useRef<(HTMLDivElement | null)[]>([])
+
+  useLayoutEffect(() => {
+    gsap.set([eyebrowRef.current, headingRef.current], { opacity: 0, y: 24 })
+    cardRefs.current.forEach((el) => { if (el) gsap.set(el, { opacity: 0, scale: 0.92, y: 20 }) })
+  }, [])
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const trigger = {
+        trigger:       sectionRef.current,
+        start:         'top 80%',
+        toggleActions: 'play reverse play reverse',
+      }
+
+      // Heading fade-up
+      gsap.to([eyebrowRef.current, headingRef.current], {
+        opacity:  1,
+        y:        0,
+        duration: 0.8,
+        ease:     'power3.out',
+        stagger:  0.12,
+        scrollTrigger: trigger,
+      })
+
+      // Cards: fade + scale-up with stagger
+      gsap.to(cardRefs.current, {
+        opacity:  1,
+        scale:    1,
+        y:        0,
+        duration: 0.7,
+        ease:     'power3.out',
+        stagger:  0.1,
+        scrollTrigger: trigger,
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section style={{ padding: 'var(--space-9) 0', background: 'var(--surface-base)' }}>
+    <section
+      ref={sectionRef}
+      style={{ padding: 'var(--space-9) 0', background: 'var(--surface-base)' }}
+    >
       <div style={{ maxWidth: 'var(--container)', margin: '0 auto', padding: '0 var(--gutter)' }}>
 
-        <p className="rp-eyebrow" style={{ marginBottom: 'var(--space-4)', textAlign: 'center' }}>
+        <p
+          ref={eyebrowRef}
+          className="rp-eyebrow"
+          style={{ marginBottom: 'var(--space-4)', textAlign: 'center' }}
+        >
           Nuestra colección
         </p>
 
-        <h2 style={{ textAlign: 'center', marginBottom: 'var(--space-7)' }}>
+        <h2
+          ref={headingRef}
+          style={{ textAlign: 'center', marginBottom: 'var(--space-7)' }}
+        >
           Jerseys Riderpath
         </h2>
 
@@ -53,8 +113,13 @@ export function FashionCatalog() {
             gap:                 'var(--space-5)',
           }}
         >
-          {JERSEYS.map((jersey) => (
-            <JerseyCard key={`${jersey.name}-${jersey.gender}`} {...jersey} />
+          {JERSEYS.map((jersey, i) => (
+            <div
+              key={`${jersey.name}-${jersey.gender}`}
+              ref={(el) => { cardRefs.current[i] = el }}
+            >
+              <JerseyCard {...jersey} />
+            </div>
           ))}
         </div>
 
