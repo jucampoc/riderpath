@@ -15,7 +15,6 @@ export interface RodadaCardProps {
   saved?:      boolean
   onSave?:     () => void
   live?:       boolean
-  href?:       string
 }
 
 const diffTone: Record<string, string> = {
@@ -33,7 +32,7 @@ function Metric({ value, unit, label }: { value: string | number; unit?: string;
           style={{
             fontFamily:    'var(--font-mono)',
             fontWeight:    700,
-            fontSize:      20,
+            fontSize:      'var(--fs-h4)',
             lineHeight:    1,
             color:         'var(--text-strong)',
             letterSpacing: '-0.02em',
@@ -42,7 +41,7 @@ function Metric({ value, unit, label }: { value: string | number; unit?: string;
           {value}
         </span>
         {unit && (
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-muted)' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--text-muted)' }}>
             {unit}
           </span>
         )}
@@ -109,7 +108,7 @@ export default function RodadaCard({
           position:    'relative',
           aspectRatio: '16/10',
           overflow:    'hidden',
-          background:  'linear-gradient(135deg, #2a2a31, #141417)',
+          background:  'linear-gradient(135deg, var(--rp-asphalt-700), var(--rp-asphalt-850))',
         }}
       >
         {image && (
@@ -142,11 +141,11 @@ export default function RodadaCard({
                 height:        24,
                 padding:       '0 10px',
                 fontFamily:    'var(--font-sans)',
-                fontSize:      12,
+                fontSize:      'var(--fs-xs)',
                 fontWeight:    600,
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
-                borderRadius:  '999px',
+                borderRadius:  'var(--radius-pill)',
                 color:         '#fff',
                 background:    'var(--rp-red)',
               }}
@@ -163,11 +162,11 @@ export default function RodadaCard({
               height:         24,
               padding:        '0 10px',
               fontFamily:     'var(--font-sans)',
-              fontSize:       12,
+              fontSize:       'var(--fs-xs)',
               fontWeight:     600,
               letterSpacing:  '0.06em',
               textTransform:  'uppercase',
-              borderRadius:   '999px',
+              borderRadius:   'var(--radius-pill)',
               color:          '#fff',
               background:     'rgba(8,8,9,0.6)',
               backdropFilter: 'blur(6px)',
@@ -283,7 +282,7 @@ export default function RodadaCard({
                 border:         '1px solid var(--border-default)',
                 fontFamily:     'var(--font-display)',
                 fontWeight:     700,
-                fontSize:       12,
+                fontSize:       'var(--fs-xs)',
                 color:          'var(--text-body)',
                 flex:           'none',
               }}

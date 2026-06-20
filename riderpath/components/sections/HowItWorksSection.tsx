@@ -97,7 +97,7 @@ export function HowItWorksSection() {
           style={{
             display:             'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap:                 '28px',
+            gap:                 'var(--space-6)',
           }}
         >
           {steps.map(({ num, title, body, accent }) => (

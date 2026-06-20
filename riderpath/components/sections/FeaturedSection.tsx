@@ -144,7 +144,7 @@ export function FeaturedSection() {
           style={{
             display:             'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap:                 '24px',
+            gap:                 'var(--space-5)',
           }}
         >
           {rodadas.map((r) => (

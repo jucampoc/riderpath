@@ -106,7 +106,7 @@ export function CommunityCta() {
         >
           {avatars.map(({ initial, bg }, i) => (
             <div
-              key={initial + i}
+              key={initial}
               style={{
                 width:          46,
                 height:         46,
@@ -154,7 +154,7 @@ export function CommunityCta() {
           style={{
             fontFamily: 'var(--font-sans)',
             fontSize:   'var(--fs-lead)',
-            color:      'rgba(255,255,255,0.75)',
+            color:      'rgba(255,255,255,0.88)',
             lineHeight: 'var(--lh-body)',
             maxWidth:   '44ch',
             margin:     '0 auto var(--space-8)',

@@ -104,6 +104,7 @@ export default function Navbar() {
         style={{ marginLeft: 'auto', gap: '14px' }}
       >
         <button
+          title="Próximamente"
           style={{
             fontFamily: 'var(--font-sans)',
             fontSize: '14.5px',
@@ -112,7 +113,8 @@ export default function Navbar() {
             background: 'transparent',
             border: 'none',
             padding: 0,
-            cursor: 'pointer',
+            cursor: 'not-allowed',
+            opacity: 0.5,
           }}
         >
           Iniciar sesión
@@ -230,6 +232,7 @@ export default function Navbar() {
 
           <div className="flex flex-col" style={{ gap: 'var(--space-3)' }}>
             <button
+              title="Próximamente"
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '14.5px',
@@ -238,7 +241,8 @@ export default function Navbar() {
                 background: 'transparent',
                 border: 'none',
                 padding: 0,
-                cursor: 'pointer',
+                cursor: 'not-allowed',
+                opacity: 0.5,
                 textAlign: 'center',
               }}
             >
