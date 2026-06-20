@@ -61,6 +61,7 @@ export default function Navbar() {
             marginTop: '2px',
           }}
         >
+          Riderpath
         </span>
       </Link>
 
