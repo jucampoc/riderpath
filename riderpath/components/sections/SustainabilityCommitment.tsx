@@ -1,16 +1,18 @@
+import { Recycle, Shirt, Globe } from 'lucide-react'
+
 const PROCESS_BLOCKS = [
   {
-    icon:  '♻',
+    Icon:  Recycle,
     title: 'PET reciclado',
     note:  'Botellas de plástico recuperadas y procesadas',
   },
   {
-    icon:  '🧵',
+    Icon:  Shirt,
     title: 'Tela técnica',
     note:  'Ligera, transpirable y resistente al camino',
   },
   {
-    icon:  '🌍',
+    Icon:  Globe,
     title: 'Menor huella ambiental',
     note:  'Menos residuos, más kilómetros con conciencia',
   },
@@ -68,7 +70,7 @@ export function SustainabilityCommitment() {
               gap:           'var(--space-3)',
             }}
           >
-            {PROCESS_BLOCKS.map(({ icon, title, note }) => (
+            {PROCESS_BLOCKS.map(({ Icon, title, note }) => (
               <div
                 key={title}
                 style={{
@@ -82,16 +84,13 @@ export function SustainabilityCommitment() {
                 }}
               >
                 {/* Icon */}
-                <span
+                <Icon
                   aria-hidden="true"
-                  style={{
-                    fontSize:   'var(--fs-h3)',
-                    lineHeight: 1,
-                    flexShrink: 0,
-                  }}
-                >
-                  {icon}
-                </span>
+                  size={30}
+                  color="var(--rp-red)"
+                  strokeWidth={1.75}
+                  style={{ flexShrink: 0, marginTop: 2 }}
+                />
 
                 {/* Text */}
                 <div>
