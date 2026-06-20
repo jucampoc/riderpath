@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useRef, useLayoutEffect } from 'react'
+import { useState, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import Image from 'next/image'
 import gsap from 'gsap'
 
@@ -22,7 +23,7 @@ export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardPr
   const genderLabel = gender === 'hombre' ? 'Hombre' : 'Mujer'
 
   // Set initial GSAP state before first paint: front visible, back hidden
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(frontRef.current, { opacity: 1, scale: 1 })
     gsap.set(backRef.current,  { opacity: 0, scale: 0.96 })
   }, [])

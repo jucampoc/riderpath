@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import { FilterTabs } from '@/components/sections/FilterTabs'
 import RodadaCard, { type RodadaCardProps } from '@/components/ui/RodadaCard'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const rodadas: RodadaCardProps[] = [
   {
@@ -46,12 +45,13 @@ export function FeaturedSection() {
   const filterRef  = useRef<HTMLDivElement>(null)
   const gridRef    = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const cards = Array.from(gridRef.current?.children ?? [])
     gsap.set([headerRef.current, filterRef.current, ...cards], { opacity: 0, y: 30 })
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       const cards = Array.from(gridRef.current?.children ?? [])
       gsap.fromTo(

@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 
 export function CommunityHero() {
@@ -10,7 +11,7 @@ export function CommunityHero() {
   const line2Ref    = useRef<HTMLSpanElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(stripeRef.current,  { scaleX: 0, transformOrigin: 'left' })
     gsap.set(eyebrowRef.current, { opacity: 0, y: 16 })
     gsap.set([line1Ref.current, line2Ref.current], { opacity: 0, y: 30 })

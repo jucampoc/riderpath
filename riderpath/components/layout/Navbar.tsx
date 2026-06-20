@@ -46,7 +46,7 @@ export default function Navbar() {
         }}
       >
         <Image
-          src="/images/logos/icono1024x1024.png"
+          src="/images/logos/icono1024x1024-copia.png"
           width={58}
           height={58}
           alt="Riderpath"

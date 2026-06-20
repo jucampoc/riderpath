@@ -1,12 +1,11 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const stats = [
   { value: '12.4k',   label: 'Riders activos',  accent: true  },
@@ -24,7 +23,7 @@ export function HeroAnimated() {
   const ctasRef     = useRef<HTMLDivElement>(null)
   const statsRef    = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(
       [stripeRef.current, eyebrowRef.current, headlineRef.current,
        leadRef.current, ctasRef.current, statsRef.current],
@@ -33,6 +32,7 @@ export function HeroAnimated() {
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       gsap.fromTo(
         [stripeRef.current, eyebrowRef.current, headlineRef.current,

@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export function NewsletterSection() {
   const sectionRef  = useRef<HTMLElement>(null)
@@ -15,7 +14,7 @@ export function NewsletterSection() {
 
   const [email, setEmail] = useState('')
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(
       [eyebrowRef.current, headlineRef.current, leadRef.current, formRef.current],
       { opacity: 0, y: 30 },
@@ -23,6 +22,7 @@ export function NewsletterSection() {
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       gsap.fromTo(
         [eyebrowRef.current, headlineRef.current, leadRef.current, formRef.current],

@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { JerseyCard, type JerseyCardProps } from '@/components/ui/JerseyCard'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const JERSEYS: JerseyCardProps[] = [
   {
@@ -46,12 +45,13 @@ export function FashionCatalog() {
   const headingRef  = useRef<HTMLHeadingElement>(null)
   const cardRefs    = useRef<(HTMLDivElement | null)[]>([])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set([eyebrowRef.current, headingRef.current], { opacity: 0, y: 24 })
     cardRefs.current.forEach((el) => { if (el) gsap.set(el, { opacity: 0, scale: 0.92, y: 20 }) })
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       const trigger = {
         trigger:       sectionRef.current,

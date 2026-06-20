@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export function MissionVision() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -12,13 +11,14 @@ export function MissionVision() {
   const misionRef  = useRef<HTMLDivElement>(null)
   const visionRef  = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(headerRef.current, { opacity: 0, y: 30 })
     gsap.set(misionRef.current, { opacity: 0, x: -40 })
     gsap.set(visionRef.current, { opacity: 0, x: 40 })
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {

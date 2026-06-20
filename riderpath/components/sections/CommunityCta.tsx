@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const avatars = [
   { initial: 'D', bg: 'var(--rp-asphalt-700)' },
@@ -22,7 +21,7 @@ export function CommunityCta() {
   const leadRef     = useRef<HTMLParagraphElement>(null)
   const ctaRef      = useRef<HTMLAnchorElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(
       [avatarsRef.current, headlineRef.current, leadRef.current, ctaRef.current],
       { opacity: 0, y: 30 },
@@ -30,6 +29,7 @@ export function CommunityCta() {
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       gsap.fromTo(
         [avatarsRef.current, headlineRef.current, leadRef.current, ctaRef.current],

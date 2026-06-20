@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export function ValueProposition() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -22,7 +21,7 @@ export function ValueProposition() {
   const title3Ref = useRef<HTMLHeadingElement>(null)
   const desc3Ref  = useRef<HTMLParagraphElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(headerRef.current, { opacity: 0, y: 30 })
     gsap.set([num1Ref.current, num2Ref.current, num3Ref.current], { opacity: 0, scale: 1.4 })
     gsap.set(
@@ -34,6 +33,7 @@ export function ValueProposition() {
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       // Build a sub-timeline for one column: number pops, then title+desc stagger up
       const makeColTl = (

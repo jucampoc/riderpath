@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const steps = [
   {
@@ -32,12 +31,13 @@ export function HowItWorksSection() {
   const headerRef   = useRef<HTMLDivElement>(null)
   const stepsGridRef = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const stepEls = Array.from(stepsGridRef.current?.children ?? [])
     gsap.set([headerRef.current, ...stepEls], { opacity: 0, y: 30 })
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       const stepEls = Array.from(stepsGridRef.current?.children ?? [])
       gsap.fromTo(

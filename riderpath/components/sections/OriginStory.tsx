@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export function OriginStory() {
   const sectionRef  = useRef<HTMLElement>(null)
@@ -13,7 +12,7 @@ export function OriginStory() {
   const headingRef  = useRef<HTMLHeadingElement>(null)
   const bodyRef     = useRef<HTMLParagraphElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     // Wordmark: start invisible, scaled down, blurred
     gsap.set(wordmarkRef.current, { opacity: 0, scale: 0.92, filter: 'blur(8px)' })
     // Text column: start hidden above final position
@@ -21,6 +20,7 @@ export function OriginStory() {
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {

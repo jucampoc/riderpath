@@ -1,11 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const IMAGES = [
   {
@@ -47,11 +46,12 @@ export function CommunityGallery() {
   const captionRefs  = useRef<(HTMLParagraphElement | null)[]>([])
 
   // Hide heading before first paint to prevent FOUC
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set([eyebrowRef.current, headingRef.current], { opacity: 0, y: 24 })
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
 
       // — Heading fade-up —

@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { Recycle, Shirt, Globe } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const PROCESS_BLOCKS = [
   {
@@ -33,13 +32,14 @@ export function SustainabilityCommitment() {
   const paragraphRef = useRef<HTMLParagraphElement>(null)
   const blockRefs    = useRef<(HTMLDivElement | null)[]>([])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(stripeRef.current,    { scaleX: 0, transformOrigin: 'left' })
     gsap.set([eyebrowRef.current, headingRef.current, paragraphRef.current], { opacity: 0, y: 20 })
     blockRefs.current.forEach((el) => { if (el) gsap.set(el, { opacity: 0, scale: 0.85, y: 16 }) })
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       const trigger = {
         trigger:       sectionRef.current,

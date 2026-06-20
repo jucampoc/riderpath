@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface BenefitDetailProps {
   number:        string
@@ -32,13 +31,14 @@ export function BenefitDetail({
   const textStartX  = imagePosition === 'right' ? -50 : 50
   const imageStartX = imagePosition === 'right' ?  50 : -50
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(numRef.current,      { opacity: 0, scale: 1.3 })
     gsap.set(textBodyRef.current, { opacity: 0, x: textStartX })
     gsap.set(imageColRef.current, { opacity: 0, x: imageStartX })
   }, [textStartX, imageStartX])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {

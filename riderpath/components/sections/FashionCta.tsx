@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const WHATSAPP_HREF = 'https://api.whatsapp.com/send/?phone=5215561371260&text&type=phone_number&app_absent=0'
 
@@ -15,11 +14,12 @@ export function FashionCta() {
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const buttonRef   = useRef<HTMLAnchorElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set([headingRef.current, subtitleRef.current, buttonRef.current], { opacity: 0, y: 28 })
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       gsap.to([headingRef.current, subtitleRef.current, buttonRef.current], {
         opacity:  1,

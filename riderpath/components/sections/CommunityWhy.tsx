@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const STATS = [
   {
@@ -41,13 +40,14 @@ export function CommunityWhy() {
   const labelRefs    = useRef<(HTMLDivElement | null)[]>([])
 
   // Hide animated elements before first paint to prevent FOUC
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(stripeRef.current, { scaleX: 0, transformOrigin: 'left' })
     gsap.set([eyebrowRef.current, headingRef.current, paragraphRef.current], { opacity: 0, y: 20 })
     labelRefs.current.forEach((el) => { if (el) gsap.set(el, { opacity: 0, y: 12 }) })
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
 
       // — Left column: stripe draw + text fade-up —

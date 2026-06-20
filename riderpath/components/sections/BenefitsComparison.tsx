@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const traditional = [
   'Información dispersa en grupos de WhatsApp',
@@ -37,7 +36,7 @@ export function BenefitsComparison() {
   const checkIconRefs = useRef<HTMLSpanElement[]>([])
   const checkTextRefs = useRef<HTMLParagraphElement[]>([])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(headerRef.current, { opacity: 0, y: 30 })
     gsap.set([colHeadTraditionalRef.current, colHeadRiderpathRef.current], { opacity: 0, y: 16 })
     gsap.set(xIconRefs.current,    { opacity: 0, scale: 0.5 })
@@ -47,6 +46,7 @@ export function BenefitsComparison() {
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {

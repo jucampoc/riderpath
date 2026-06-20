@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export function BenefitsCta() {
   const sectionRef  = useRef<HTMLElement>(null)
@@ -13,11 +12,12 @@ export function BenefitsCta() {
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const buttonRef   = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set([h2Ref.current, subtitleRef.current, buttonRef.current], { opacity: 0, y: 30 })
   }, [])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
       gsap.fromTo(
         [h2Ref.current, subtitleRef.current, buttonRef.current],
