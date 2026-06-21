@@ -84,8 +84,7 @@ export function SustainabilityCommitment() {
         }}
       >
         <div
-          className="grid gap-8"
-          style={{ gridTemplateColumns: '3fr 2fr', alignItems: 'center' }}
+          className="grid gap-8 grid-cols-1 md:grid-cols-[3fr_2fr] items-center"
         >
 
           {/* Left: stripe + eyebrow + heading + body */}
