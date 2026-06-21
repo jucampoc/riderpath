@@ -364,3 +364,51 @@ strong {
     padding-top: var(--space-6);
   }
 }
+
+/* CommunityGallery — responsive 3-image grid */
+.gallery-grid {
+  display: grid;
+  gap: var(--space-4);
+  /* Mobile: single column — all cards full-width, stacked */
+  grid-template-columns: 1fr;
+}
+
+.gallery-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/*
+  Mobile aspect ratios create the visual hierarchy:
+  - Sierra (featured): 4/3 — taller, clearly the dominant image
+  - Tequila / Baja: 16/9 — shorter, read as "secondary"
+*/
+.gallery-card-sierra  { aspect-ratio: 4 / 3; }
+.gallery-card-tequila { aspect-ratio: 16 / 9; }
+.gallery-card-baja    { aspect-ratio: 16 / 9; }
+
+/* Desktop: restore the asymmetric 3-area layout */
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "sierra tequila" "sierra baja";
+    min-height: 560px;
+  }
+
+  .gallery-card-sierra {
+    grid-area: sierra;
+    aspect-ratio: unset;
+    min-height: 560px;
+  }
+
+  .gallery-card-tequila {
+    grid-area: tequila;
+    aspect-ratio: unset;
+  }
+
+  .gallery-card-baja {
+    grid-area: baja;
+    aspect-ratio: unset;
+  }
+}

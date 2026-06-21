@@ -12,7 +12,8 @@ const IMAGES = [
     alt:     'Rodada por la Sierra Gorda de Querétaro',
     caption: 'Sierra Gorda, Querétaro',
     area:    'sierra',
-    sizes:   '(max-width: 768px) 100vw, 66vw',
+    // Full-width on mobile, 2/3 of container on desktop
+    sizes:   '(max-width: 767px) 100vw, 66vw',
     yFrom:   -8,
     yTo:     8,
   },
@@ -21,7 +22,8 @@ const IMAGES = [
     alt:     'Ruta del Tequila por Jalisco',
     caption: 'Ruta del Tequila, Jalisco',
     area:    'tequila',
-    sizes:   '(max-width: 768px) 100vw, 33vw',
+    // Full-width on mobile (stacked), 1/3 of container on desktop
+    sizes:   '(max-width: 767px) 100vw, 33vw',
     yFrom:   -12,
     yTo:     12,
   },
@@ -30,7 +32,8 @@ const IMAGES = [
     alt:     'Carretera Transpeninsular en Baja California',
     caption: 'Transpeninsular, Baja California',
     area:    'baja',
-    sizes:   '(max-width: 768px) 100vw, 33vw',
+    // Full-width on mobile (stacked), 1/3 of container on desktop
+    sizes:   '(max-width: 767px) 100vw, 33vw',
     yFrom:   -6,
     yTo:     6,
   },
@@ -40,27 +43,24 @@ export function CommunityGallery() {
   const sectionRef   = useRef<HTMLElement>(null)
   const eyebrowRef   = useRef<HTMLParagraphElement>(null)
   const headingRef   = useRef<HTMLHeadingElement>(null)
-  // Parallax wrapper refs (one per image — moves with scroll)
   const parallaxRefs = useRef<(HTMLDivElement | null)[]>([])
-  // Caption refs (separate fade-in trigger)
   const captionRefs  = useRef<(HTMLParagraphElement | null)[]>([])
 
-  // Hide heading before first paint to prevent FOUC
   useIsomorphicLayoutEffect(() => {
     gsap.set([eyebrowRef.current, headingRef.current], { opacity: 0, y: 24 })
   }, [])
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
-    const ctx = gsap.context(() => {
 
-      // — Heading fade-up —
+    // Always-on: heading fade-up + per-caption fade-in
+    const ctx = gsap.context(() => {
       gsap.to([eyebrowRef.current, headingRef.current], {
-        opacity: 1,
-        y:       0,
+        opacity:  1,
+        y:        0,
         duration: 0.8,
-        ease:    'power3.out',
-        stagger: 0.12,
+        ease:     'power3.out',
+        stagger:  0.12,
         scrollTrigger: {
           trigger:       sectionRef.current,
           start:         'top 80%',
@@ -68,9 +68,29 @@ export function CommunityGallery() {
         },
       })
 
-      // — Per-image parallax (scrub tied to scroll) —
-      // The parallax wrapper has inset: '-20% 0' making it 140% of the card height.
-      // A yPercent of ±12 shifts ≈ ±16.8% of card height — safely within the 20% buffer.
+      captionRefs.current.forEach((caption) => {
+        if (!caption) return
+        gsap.fromTo(
+          caption,
+          { opacity: 0, y: 8 },
+          {
+            opacity:  1,
+            y:        0,
+            duration: 0.6,
+            ease:     'power2.out',
+            scrollTrigger: {
+              trigger:       caption,
+              start:         'top 85%',
+              toggleActions: 'play reverse play reverse',
+            },
+          },
+        )
+      })
+    }, sectionRef)
+
+    // Desktop only: scroll-scrub parallax — skipped on mobile for performance
+    const mm = gsap.matchMedia()
+    mm.add('(min-width: 768px)', () => {
       IMAGES.forEach(({ yFrom, yTo }, i) => {
         const el = parallaxRefs.current[i]
         if (!el) return
@@ -89,30 +109,12 @@ export function CommunityGallery() {
           },
         )
       })
+    })
 
-      // — Caption fade-ins (separate trigger per caption) —
-      captionRefs.current.forEach((caption) => {
-        if (!caption) return
-        gsap.fromTo(
-          caption,
-          { opacity: 0, y: 8 },
-          {
-            opacity: 1,
-            y:       0,
-            duration: 0.6,
-            ease:    'power2.out',
-            scrollTrigger: {
-              trigger:       caption,
-              start:         'top 85%',
-              toggleActions: 'play reverse play reverse',
-            },
-          },
-        )
-      })
-
-    }, sectionRef)
-
-    return () => ctx.revert()
+    return () => {
+      ctx.revert()
+      mm.revert()
+    }
   }, [])
 
   return (
@@ -138,36 +140,28 @@ export function CommunityGallery() {
         </h2>
 
         {/*
-          Desktop: sierra spans left 2 cols × both rows, tequila top-right, baja bottom-right.
-          Mobile: single column, stacked.
+          Mobile  (<768 px): single column — sierra (4:3, dominant) on top,
+                             tequila + baja (16:9, secondary) stacked below it
+          Desktop (≥768 px): sierra large left column spanning both rows,
+                             tequila top-right, baja bottom-right
+          Layout + aspect-ratios handled by .gallery-grid / .gallery-card-* in globals.css
         */}
-        <div
-          style={{
-            display:             'grid',
-            gap:                 'var(--space-4)',
-            gridTemplateColumns: '2fr 1fr',
-            gridTemplateRows:    '1fr 1fr',
-            gridTemplateAreas:   '"sierra tequila" "sierra baja"',
-            minHeight:           560,
-          }}
-        >
+        <div className="gallery-grid">
           {IMAGES.map(({ src, alt, caption, area, sizes }, i) => (
             <div
               key={area}
+              className={`gallery-card gallery-card-${area}`}
               style={{
-                gridArea:     area,
-                position:     'relative',
                 borderRadius: 'var(--radius-lg)',
-                overflow:     'hidden',        // clips the oversized parallax wrapper
                 background:   'var(--surface-card)',
                 boxShadow:    'var(--shadow-md)',
-                minHeight:    area === 'sierra' ? 560 : 'auto',
               }}
             >
               {/*
-                Parallax wrapper: extends 20% beyond the card on top and bottom
-                so yPercent shifts never expose the background behind the image.
-                GSAP animates this element; the card's overflow:hidden clips it.
+                Parallax wrapper: 140% of card height (20% bleed on each side)
+                so yPercent shifts never expose the background.
+                Overflow:hidden on .gallery-card clips it.
+                On mobile the wrapper is static; GSAP only runs on desktop (≥768 px).
               */}
               <div
                 ref={(el) => { parallaxRefs.current[i] = el }}
@@ -182,7 +176,7 @@ export function CommunityGallery() {
                 />
               </div>
 
-              {/* Gradient overlay — sits above parallax wrapper, doesn't move */}
+              {/* Gradient overlay */}
               <div
                 aria-hidden="true"
                 style={{
@@ -193,9 +187,10 @@ export function CommunityGallery() {
                 }}
               />
 
-              {/* Caption — also stationary, above gradient */}
+              {/* Caption — font/tracking reduced on mobile for compact cards via .gallery-caption */}
               <p
                 ref={(el) => { captionRefs.current[i] = el }}
+                className="gallery-caption"
                 style={{
                   position:      'absolute',
                   bottom:        'var(--space-4)',
@@ -209,6 +204,8 @@ export function CommunityGallery() {
                   textTransform: 'uppercase',
                   textShadow:    '0 1px 4px rgba(0,0,0,0.6)',
                   zIndex:        2,
+                  // Prevent caption from widening the card on very narrow screens
+                  maxWidth:      'calc(100% - var(--space-5))',
                 }}
               >
                 {caption}
