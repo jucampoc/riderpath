@@ -51,6 +51,7 @@ export default function Navbar() {
           height={58}
           alt="Riderpath"
           priority
+          style={{ width: 'auto', height: 'auto' }}
         />
         <span
           style={{

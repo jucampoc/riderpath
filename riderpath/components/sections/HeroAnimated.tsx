@@ -117,6 +117,7 @@ export function HeroAnimated() {
           src="/images/logos/logo-icon.png"
           alt=""
           fill
+          priority
           style={{ objectFit: 'contain' }}
           sizes="60vw"
         />

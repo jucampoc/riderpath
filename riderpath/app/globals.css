@@ -354,3 +354,13 @@ strong {
   background: var(--rp-red);
   border-radius: var(--radius-pill);
 }
+
+/* CommunityWhy — stats column: left border+indent on desktop, top border on mobile */
+@media (max-width: 767px) {
+  .community-why-stats {
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+    padding-left: 0;
+    padding-top: var(--space-6);
+  }
+}
