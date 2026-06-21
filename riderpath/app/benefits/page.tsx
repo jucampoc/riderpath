@@ -5,7 +5,7 @@ import { BenefitsCta }        from '@/components/sections/BenefitsCta'
 
 export default function BenefitsPage() {
   return (
-    <div style={{ paddingTop: 'var(--header-h)' }}>
+    <div style={{ paddingTop: 'var(--header-h)', overflowX: 'hidden' }}>
 
       <BenefitsHero />
 

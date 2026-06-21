@@ -111,7 +111,7 @@ export function BenefitDetail({
   )
 
   return (
-    <section ref={sectionRef} style={{ padding: 'var(--space-9) 0', background }}>
+    <section ref={sectionRef} style={{ padding: 'var(--space-9) 0', background, overflowX: 'hidden' }}>
       <div style={{ maxWidth: 'var(--container)', margin: '0 auto', padding: '0 var(--gutter)' }}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {imagePosition === 'left' ? (
