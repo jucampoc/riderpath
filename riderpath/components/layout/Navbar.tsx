@@ -6,10 +6,10 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const navLinks = [
-  { href: '/what-is',   label: 'Qué es' },
-  { href: '/benefits',  label: 'Beneficios' },
-  { href: '/community', label: 'Comunidad' },
-  { href: '/fashion',   label: 'Moda' },
+  { href: '/what-is',           label: 'Qué es' },
+  { href: '/benefits',          label: 'Beneficios' },
+  { href: '/community',         label: 'Comunidad' },
+  { href: '/comunidad-rodadas', label: 'Rodadas' },
 ]
 
 export default function Navbar() {

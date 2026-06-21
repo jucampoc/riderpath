@@ -17,10 +17,10 @@ const footerNav = [
   {
     title: 'Riderpath',
     links: [
-      { href: '/what-is', label: 'Qué es' },
-      { href: '/benefits', label: 'Beneficios' },
-      { href: '/community', label: 'Comunidad' },
-      { href: '/fashion', label: 'Moda sostenible' },
+      { href: '/what-is',           label: 'Qué es' },
+      { href: '/benefits',          label: 'Beneficios' },
+      { href: '/community',         label: 'Comunidad' },
+      { href: '/comunidad-rodadas', label: 'Rodadas' },
     ],
   },
   {

@@ -5,12 +5,12 @@ import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://riderpath.com'),
-  title: 'Riderpath — El mapa vivo de los motociclistas viajeros',
-  description: 'Crea, difunde y colecciona tus rodadas. El primer sistema tecnológico para motociclistas viajeros.',
-  keywords: ['motociclistas', 'rodadas', 'viajes en moto', 'comunidad biker', 'México'],
+  title: 'Riderpath — Moda sostenible para motociclistas',
+  description: 'Jerseys fabricados con PET reciclado. Moda sostenible para motociclistas viajeros.',
+  keywords: ['moda sostenible', 'motociclistas', 'jerseys reciclados', 'PET reciclado', 'México'],
   openGraph: {
     title: 'Riderpath',
-    description: 'Crea, difunde y colecciona tus rodadas.',
+    description: 'Jerseys fabricados con PET reciclado. Moda sostenible para motociclistas.',
     url: 'https://riderpath.com',
     siteName: 'Riderpath',
     locale: 'es_MX',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Riderpath',
-    description: 'Crea, difunde y colecciona tus rodadas.',
+    description: 'Jerseys fabricados con PET reciclado. Moda sostenible para motociclistas.',
     images: ['/images/og-image.jpg'],
   },
 }

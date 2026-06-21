@@ -1,17 +1,17 @@
-import { HeroAnimated }      from '@/components/sections/HeroAnimated'
-import { FeaturedSection }   from '@/components/sections/FeaturedSection'
-import { HowItWorksSection } from '@/components/sections/HowItWorksSection'
-import { CommunityCta }      from '@/components/sections/CommunityCta'
-import { NewsletterSection } from '@/components/sections/NewsletterSection'
+import { FashionHero }              from '@/components/sections/FashionHero'
+import { BrandIntro }               from '@/components/sections/BrandIntro'
+import { SustainabilityCommitment } from '@/components/sections/SustainabilityCommitment'
+import { FashionCatalog }           from '@/components/sections/FashionCatalog'
+import { FashionCta }               from '@/components/sections/FashionCta'
 
 export default function HomePage() {
   return (
-    <>
-      <HeroAnimated />
-      <FeaturedSection />
-      <HowItWorksSection />
-      <CommunityCta />
-      <NewsletterSection />
-    </>
+    <div style={{ paddingTop: 'var(--header-h)' }}>
+      <FashionHero />
+      <BrandIntro />
+      <SustainabilityCommitment />
+      <FashionCatalog />
+      <FashionCta />
+    </div>
   )
 }
