@@ -6,7 +6,7 @@ import { WhatIsCta }         from '@/components/sections/WhatIsCta'
 
 export default function WhatIsPage() {
   return (
-    <div style={{ paddingTop: 'var(--header-h)' }}>
+    <div style={{ paddingTop: 'var(--header-h)', overflowX: 'hidden' }}>
       <WhatIsHero />
       <OriginStory />
       <MissionVision />

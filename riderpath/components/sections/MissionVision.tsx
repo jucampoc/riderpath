@@ -57,7 +57,7 @@ export function MissionVision() {
   return (
     <section
       ref={sectionRef}
-      style={{ padding: 'var(--space-9) 0', background: 'var(--surface-base)' }}
+      style={{ padding: 'var(--space-9) 0', background: 'var(--surface-base)', overflowX: 'hidden' }}
     >
       <div style={{ maxWidth: 'var(--container)', margin: '0 auto', padding: '0 var(--gutter)' }}>
 

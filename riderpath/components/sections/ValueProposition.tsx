@@ -23,7 +23,7 @@ export function ValueProposition() {
 
   useIsomorphicLayoutEffect(() => {
     gsap.set(headerRef.current, { opacity: 0, y: 30 })
-    gsap.set([num1Ref.current, num2Ref.current, num3Ref.current], { opacity: 0, scale: 1.4 })
+    gsap.set([num1Ref.current, num2Ref.current, num3Ref.current], { opacity: 0, scale: 0.85 })
     gsap.set(
       [title1Ref.current, desc1Ref.current,
        title2Ref.current, desc2Ref.current,
@@ -44,7 +44,7 @@ export function ValueProposition() {
         const sub = gsap.timeline()
         sub
           .fromTo(numEl,
-            { opacity: 0, scale: 1.4 },
+            { opacity: 0, scale: 0.85 },
             { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)' },
           )
           .fromTo([titleEl, descEl],
@@ -84,7 +84,7 @@ export function ValueProposition() {
   return (
     <section
       ref={sectionRef}
-      style={{ padding: 'var(--space-9) 0', background: 'var(--surface-raised)' }}
+      style={{ padding: 'var(--space-9) 0', background: 'var(--surface-raised)', overflowX: 'hidden' }}
     >
       <div style={{ maxWidth: 'var(--container)', margin: '0 auto', padding: '0 var(--gutter)' }}>
 

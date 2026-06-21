@@ -35,7 +35,7 @@ export function OriginStory() {
       tl.fromTo(
         wordmarkRef.current,
         { opacity: 0, scale: 0.92, filter: 'blur(8px)' },
-        { opacity: 0.15, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power2.out' },
+        { opacity: 0.15, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power2.out', clearProps: 'filter' },
       )
       // Text column: fade-up stagger, starts 0.2s after wordmark begins
       .fromTo(
@@ -84,6 +84,7 @@ export function OriginStory() {
               justifyContent: 'center',
               paddingTop:     '0.3em',
               paddingBottom:  '0.15em',
+              overflow:       'hidden',
             }}
           >
             <span
@@ -95,6 +96,7 @@ export function OriginStory() {
                 lineHeight: 1.4,
                 userSelect: 'none',
                 whiteSpace: 'nowrap',
+                willChange: 'transform, opacity, filter',
               }}
             >
               Riderpath
