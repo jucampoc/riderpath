@@ -28,9 +28,9 @@ export default function Navbar() {
         display: 'flex',
         alignItems: 'center',
         padding: '0 var(--gutter)',
-        background: 'rgba(14, 14, 16, 0.72)',
-        backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
+        background: 'var(--surface-glass)',
+        backdropFilter: 'blur(var(--header-blur))',
+        WebkitBackdropFilter: 'blur(var(--header-blur))',
         borderBottom: '1px solid var(--border-subtle)',
       }}
     >
