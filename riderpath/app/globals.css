@@ -93,6 +93,14 @@
   --text-on-red:      var(--rp-white);
   --text-on-light:    var(--rp-asphalt-900);
 
+  /* Fixed "light text on a guaranteed-dark surface" — used by the Footer,
+     which intentionally stays dark in both color schemes. Do NOT add these
+     inside the @media (prefers-color-scheme: light) block. */
+  --text-on-dark-strong: var(--rp-ink-100);  /* #F6F5F2 */
+  --text-on-dark-body:   var(--rp-ink-300);  /* #C3C1BC */
+  --text-on-dark-muted:  var(--rp-ink-500);  /* #908E8B */
+  --text-on-dark-faint:  var(--rp-ink-700);  /* #65646A */
+
   /* Marca / interactivos */
   --brand:            var(--rp-red);
   --brand-hover:      var(--rp-red-bright);

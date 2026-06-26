@@ -72,7 +72,7 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: 'var(--fs-sm)',
-                color: 'var(--text-muted)',
+                color: 'var(--text-on-dark-muted)',
                 maxWidth: '34ch',
                 lineHeight: 'var(--lh-body)',
                 margin: '0 0 var(--space-5)',
@@ -96,7 +96,7 @@ export default function Footer() {
                     fontSize: 'var(--fs-xs)',
                     letterSpacing: 'var(--tracking-eyebrow)',
                     textTransform: 'uppercase',
-                    color: 'var(--text-muted)',
+                    color: 'var(--text-on-dark-muted)',
                     border: '1px solid var(--border-default)',
                     borderRadius: 'var(--radius-pill)',
                     padding: 'var(--space-2) var(--space-3)',
@@ -112,7 +112,7 @@ export default function Footer() {
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget as HTMLAnchorElement
-                    el.style.color = 'var(--text-muted)'
+                    el.style.color = 'var(--text-on-dark-muted)'
                     el.style.borderColor = 'var(--border-default)'
                   }}
                 >
@@ -132,7 +132,7 @@ export default function Footer() {
                   fontWeight: 'var(--fw-semibold)',
                   letterSpacing: 'var(--tracking-eyebrow)',
                   textTransform: 'uppercase',
-                  color: 'var(--text-faint)',
+                  color: 'var(--text-on-dark-faint)',
                   marginBottom: 'var(--space-4)',
                 }}
               >
@@ -155,15 +155,15 @@ export default function Footer() {
                       style={{
                         fontFamily: 'var(--font-sans)',
                         fontSize: 'var(--fs-sm)',
-                        color: 'var(--text-body)',
+                        color: 'var(--text-on-dark-body)',
                         textDecoration: 'none',
                         transition: 'color var(--dur-base) var(--ease-out)',
                       }}
                       onMouseEnter={e => {
-                        (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-strong)'
+                        (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-on-dark-strong)'
                       }}
                       onMouseLeave={e => {
-                        (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-body)'
+                        (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-on-dark-body)'
                       }}
                     >
                       {label}
@@ -192,7 +192,7 @@ export default function Footer() {
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: 'var(--fs-xs)',
-              color: 'var(--text-faint)',
+              color: 'var(--text-on-dark-faint)',
             }}
           >
             © {new Date().getFullYear()} Riderpath · Biitzu S.A.S. de C.V.
@@ -205,7 +205,7 @@ export default function Footer() {
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: 'var(--fs-xs)',
-                  color: 'var(--text-faint)',
+                  color: 'var(--text-on-dark-faint)',
                 }}
               >
                 Sitio desarrollado por Julian Campo
@@ -217,14 +217,14 @@ export default function Footer() {
                 aria-label="GitHub de Julian Campo"
                 style={{
                   display: 'flex',
-                  color: 'var(--text-faint)',
+                  color: 'var(--text-on-dark-faint)',
                   transition: 'color var(--dur-base) var(--ease-out)',
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-strong)'
+                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-on-dark-strong)'
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-faint)'
+                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-on-dark-faint)'
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -238,14 +238,14 @@ export default function Footer() {
                 aria-label="LinkedIn de Julian Campo"
                 style={{
                   display: 'flex',
-                  color: 'var(--text-faint)',
+                  color: 'var(--text-on-dark-faint)',
                   transition: 'color var(--dur-base) var(--ease-out)',
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-strong)'
+                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-on-dark-strong)'
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-faint)'
+                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-on-dark-faint)'
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -266,15 +266,15 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: 'var(--fs-xs)',
-                    color: 'var(--text-faint)',
+                    color: 'var(--text-on-dark-faint)',
                     textDecoration: 'none',
                     transition: 'color var(--dur-base) var(--ease-out)',
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-muted)'
+                    (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-on-dark-muted)'
                   }}
                   onMouseLeave={e => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-faint)'
+                    (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-on-dark-faint)'
                   }}
                 >
                   {label}
