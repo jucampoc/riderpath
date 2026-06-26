@@ -50,6 +50,7 @@
 
   /* ---- Neutros cálidos (papel / arena) ---- */
   --rp-paper:         #F4F2ED;
+  --rp-paper-raised:  #FBFAF7;
   --rp-paper-dim:     #E7E3DA;
   --rp-sand:          #C9BBA3;
   --rp-white:         #FFFFFF;
@@ -98,6 +99,7 @@
   --brand-press:      var(--rp-red-deep);
   --brand-contrast:   var(--rp-white);
   --accent:           var(--rp-amber);
+  --brand-text:       var(--rp-red-bright);
 
   /* Bordes */
   --border-subtle:    rgba(255,255,255,0.08);
@@ -222,25 +224,54 @@
 }
 
 /* ============================================================
-   Scope de luz — aplicar con class="rp-light" en un contenedor.
+   Light mode — system preference. Tokens not listed here
+   (--brand, --brand-hover, --brand-press, --brand-contrast,
+   --accent, --text-on-red) are intentionally identical in
+   both modes and are NOT overridden.
    ============================================================ */
-.rp-light {
-  --surface-base:    var(--rp-paper);
-  --surface-raised:  var(--rp-white);
-  --surface-card:    var(--rp-white);
-  --surface-hover:   var(--rp-paper-dim);
-  --surface-inset:   var(--rp-paper-dim);
-  --surface-inverse: var(--rp-asphalt-900);
+@media (prefers-color-scheme: light) {
+  :root {
+    /* surfaces */
+    --surface-base:     var(--rp-paper);         /* #F4F2ED */
+    --surface-raised:   var(--rp-paper-raised);  /* #FBFAF7 */
+    --surface-card:     var(--rp-white);         /* #FFFFFF */
+    --surface-hover:    var(--rp-paper-dim);     /* #E7E3DA */
+    --surface-inset:    var(--rp-paper-raised);  /* #FBFAF7 */
+    --surface-inverse:  var(--rp-asphalt-900);   /* #0E0E10 — footer stays dark */
 
-  --text-strong:     var(--rp-asphalt-900);
-  --text-body:       #36353A;
-  --text-muted:      #6E6C70;
-  --text-faint:      #9A9897;
-  --text-on-light:   var(--rp-asphalt-900);
+    /* text */
+    --text-strong:      var(--rp-asphalt-900);
+    --text-body:        #36353A;
+    --text-muted:       #5C5A60;
+    --text-faint:       #6F6D70;
+    --text-on-light:    var(--rp-asphalt-900);
+    --brand-text:       var(--rp-red-deep);      /* #9E1B26, 6.5:1 AA links */
 
-  --border-subtle:   rgba(14,14,16,0.08);
-  --border-default:  rgba(14,14,16,0.14);
-  --border-strong:   rgba(14,14,16,0.22);
+    /* lines */
+    --border-subtle:    rgba(14,14,16,0.10);
+    --border-default:   rgba(14,14,16,0.16);
+    --border-strong:    rgba(14,14,16,0.24);
+
+    /* semantic states (re-darkened for AA on light surfaces) */
+    --rp-success:       #1E874B;
+    --rp-warning:       var(--rp-amber-deep);   /* #B97A1E */
+    --rp-danger:        #C42A30;
+    --rp-info:          #2F76AB;
+
+    /* elevation, glow, focus */
+    /* NOTE: --shadow-sm, --shadow-lg, --shadow-xl, --glow-red are estimated —
+       same blur/spread shape as dark mode, opacity recalibrated for warm light
+       backgrounds. Needs visual confirmation against Claude Design. */
+    --shadow-sm:        0 1px 2px rgba(28,22,18,0.06);
+    --shadow-md:        0 4px 16px rgba(28,22,18,0.10);
+    --shadow-lg:        0 14px 36px rgba(28,22,18,0.14);
+    --shadow-xl:        0 28px 64px rgba(28,22,18,0.18);
+    --edge-light:       inset 0 1px 0 rgba(14,14,16,0.03);
+    --glow-red:         0 8px 28px rgba(208,33,39,0.28);
+    --glow-red-sm:      0 4px 12px rgba(208,33,39,0.24);
+    --focus-ring:       rgba(208,33,39,0.40);
+    --overlay-scrim:    rgba(22,20,18,0.50);
+  }
 }
 
 /* ============================================================
