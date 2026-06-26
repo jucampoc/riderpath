@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://riderpath.com'),
-  title: 'Riderpath — Moda sostenible para motociclistas',
+  title: 'Riderpath - Moda sostenible para motociclistas',
   description: 'Jerseys fabricados con PET reciclado. Moda sostenible para motociclistas viajeros.',
   keywords: ['moda sostenible', 'motociclistas', 'jerseys reciclados', 'PET reciclado', 'México'],
   openGraph: {
