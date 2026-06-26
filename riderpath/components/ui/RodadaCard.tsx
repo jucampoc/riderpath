@@ -18,10 +18,10 @@ export interface RodadaCardProps {
 }
 
 const diffTone: Record<string, string> = {
-  Baja:    '#46B26C',
-  Media:   '#E8A33B',
-  Alta:    '#D02127',
-  Extrema: '#9E1B26',
+  Baja:    'var(--rp-success)',
+  Media:   'var(--rp-amber)',
+  Alta:    'var(--rp-red)',
+  Extrema: 'var(--rp-red-deep)',
 }
 
 function Metric({ value, unit, label }: { value: string | number; unit?: string; label: string }) {
