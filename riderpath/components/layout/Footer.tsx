@@ -21,6 +21,7 @@ const footerNav = [
       { href: '/benefits',          label: 'Beneficios' },
       { href: '/community',         label: 'Comunidad' },
       { href: '/comunidad-rodadas', label: 'Rodadas' },
+      { href: '/', label: 'Moda' },
     ],
   },
   {

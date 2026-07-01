@@ -5,11 +5,11 @@ import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://riderpath.com'),
-  title: 'Riderpath® — Motociclistas con autenticidad',
+  title: 'Riderpath® - Motociclistas con autenticidad',
   description: 'La marca mexicana que conecta a motociclistas con autenticidad. Indumentaria exclusiva, comunidad y propósito.',
   keywords: ['motociclistas', 'comunidad motociclista', 'indumentaria exclusiva', 'moda sostenible', 'accesorios de piel', 'México'],
   openGraph: {
-    title: 'Riderpath® — Motociclistas con autenticidad',
+    title: 'Riderpath® - Motociclistas con autenticidad',
     description: 'La marca mexicana que conecta a motociclistas con autenticidad. Indumentaria exclusiva, comunidad y propósito.',
     url: 'https://riderpath.com',
     siteName: 'Riderpath',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Riderpath® — Motociclistas con autenticidad',
+    title: 'Riderpath® - Motociclistas con autenticidad',
     description: 'La marca mexicana que conecta a motociclistas con autenticidad. Indumentaria exclusiva, comunidad y propósito.',
     images: ['/images/og-image.jpg'],
   },

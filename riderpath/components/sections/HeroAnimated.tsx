@@ -180,7 +180,7 @@ export function HeroAnimated() {
           }}
         >
           Riderpath® conecta a motociclistas con autenticidad. Indumentaria
-          exclusiva con propósito — y muy pronto, la app para crear, difundir y coleccionar tus rodadas.
+          exclusiva con propósito - y muy pronto, la app para crear, difundir y coleccionar tus rodadas.
         </p>
 
         {/* 4 — CTA buttons (delay 0.45s) */}

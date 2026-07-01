@@ -93,7 +93,7 @@ export function JerseyCard({ name, frontImage, backImage, gender, imagePosition 
         <div ref={frontRef} style={{ position: 'absolute', inset: 0 }}>
           <Image
             src={frontImage}
-            alt={`${name} — Frente`}
+            alt={`${name} - Frente`}
             fill
             priority={priority}
             style={{ objectFit: imageFit, objectPosition: imagePosition }}
@@ -105,7 +105,7 @@ export function JerseyCard({ name, frontImage, backImage, gender, imagePosition 
         <div ref={backRef} style={{ position: 'absolute', inset: 0, background: backImageBg }}>
           <Image
             src={backImage}
-            alt={`${name} — Espalda`}
+            alt={`${name} - Espalda`}
             fill
             style={{ objectFit: backImageFit ?? imageFit, objectPosition: backImagePosition ?? imagePosition }}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"

@@ -62,7 +62,7 @@ export function WhatIsHero() {
           ref={subtitleRef}
           style={{ fontSize: 'var(--fs-lead)', color: 'var(--text-body)', maxWidth: '60ch', margin: 0 }}
         >
-          Motociclistas con autenticidad — ese es el corazón de Riderpath®.
+          Motociclistas con autenticidad - ese es el corazón de Riderpath®.
         </p>
 
       </div>

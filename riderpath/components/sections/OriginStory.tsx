@@ -71,7 +71,7 @@ export function OriginStory() {
               ref={bodyRef}
               style={{ fontSize: 'var(--fs-body)', color: 'var(--text-body)', lineHeight: 'var(--lh-body)', margin: 0 }}
             >
-              Riderpath® es una marca mexicana creada en 2020 como punto de encuentro digital para apasionados de las rutas en moto. Desde entonces, nos esforzamos por sensibilizar y concientizar a la comunidad sobre el deber ser de un motociclista ejemplar. El nombre nace de la unión de dos palabras: Rider (motociclista) y Path (camino) — el camino del motociclista.
+              Riderpath® es una marca mexicana creada en 2020 como punto de encuentro digital para apasionados de las rutas en moto. Desde entonces, nos esforzamos por sensibilizar y concientizar a la comunidad sobre el deber ser de un motociclista ejemplar. El nombre nace de la unión de dos palabras: Rider (motociclista) y Path (camino) - el camino del motociclista.
             </p>
           </div>
 
