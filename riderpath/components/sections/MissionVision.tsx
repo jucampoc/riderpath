@@ -67,7 +67,7 @@ export function MissionVision() {
             Hacia dónde vamos
           </p>
           <h2 style={{ margin: 0 }}>
-            Misión y Visión
+            MISIÓN Y VISIÓN
           </h2>
         </div>
 
@@ -85,7 +85,7 @@ export function MissionVision() {
           >
             <h3 style={{ marginBottom: 'var(--space-4)' }}>Misión</h3>
             <p style={{ fontSize: 'var(--fs-body)', color: 'var(--text-body)', lineHeight: 'var(--lh-body)', margin: 0 }}>
-              Administrar eficazmente, a través de medios digitales, las rodadas de las y los motociclistas e impulsar la moda sostenible entre la comunidad biker.
+              Impulsar un estilo de vida consciente, seguro y ejemplar, conectando a motociclistas con autenticidad a través de espacios digitales, valores compartidos e indumentaria exclusiva con propósito.
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export function MissionVision() {
           >
             <h3 style={{ marginBottom: 'var(--space-4)' }}>Visión</h3>
             <p style={{ fontSize: 'var(--fs-body)', color: 'var(--text-body)', lineHeight: 'var(--lh-body)', margin: 0 }}>
-              Ser una marca global y el principal referente entre las y los motociclistas viajeros.
+              Ser una marca global y principal referente entre las personas apasionadas por los viajes en motocicleta.
             </p>
           </div>
 

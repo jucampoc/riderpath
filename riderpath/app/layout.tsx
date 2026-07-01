@@ -5,12 +5,12 @@ import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://riderpath.com'),
-  title: 'Riderpath - Moda sostenible para motociclistas',
-  description: 'Jerseys fabricados con PET reciclado. Moda sostenible para motociclistas viajeros.',
-  keywords: ['moda sostenible', 'motociclistas', 'jerseys reciclados', 'PET reciclado', 'México'],
+  title: 'Riderpath® — Motociclistas con autenticidad',
+  description: 'La marca mexicana que conecta a motociclistas con autenticidad. Indumentaria exclusiva, comunidad y propósito.',
+  keywords: ['motociclistas', 'comunidad motociclista', 'indumentaria exclusiva', 'moda sostenible', 'accesorios de piel', 'México'],
   openGraph: {
-    title: 'Riderpath',
-    description: 'Jerseys fabricados con PET reciclado. Moda sostenible para motociclistas.',
+    title: 'Riderpath® — Motociclistas con autenticidad',
+    description: 'La marca mexicana que conecta a motociclistas con autenticidad. Indumentaria exclusiva, comunidad y propósito.',
     url: 'https://riderpath.com',
     siteName: 'Riderpath',
     locale: 'es_MX',
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Riderpath',
-    description: 'Jerseys fabricados con PET reciclado. Moda sostenible para motociclistas.',
+    title: 'Riderpath® — Motociclistas con autenticidad',
+    description: 'La marca mexicana que conecta a motociclistas con autenticidad. Indumentaria exclusiva, comunidad y propósito.',
     images: ['/images/og-image.jpg'],
   },
 }

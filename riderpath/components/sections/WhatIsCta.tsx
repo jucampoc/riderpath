@@ -58,14 +58,14 @@ export function WhatIsCta() {
       <div style={{ maxWidth: 'var(--container-prose)', margin: '0 auto', padding: '0 var(--gutter)', textAlign: 'center' }}>
 
         <h2 ref={h2Ref} style={{ color: 'var(--rp-white)', marginBottom: 'var(--space-5)' }}>
-          Ahora que sabes quiénes somos
+          FORMA PARTE DE ALGO EXCLUSIVO
         </h2>
 
         <p
           ref={subtitleRef}
           style={{ fontSize: 'var(--fs-lead)', color: 'rgba(255,255,255,0.88)', lineHeight: 'var(--lh-body)', marginBottom: 'var(--space-8)' }}
         >
-          Es momento de vivir la experiencia. Únete a la comunidad de motociclistas viajeros más grande de México.
+          Únete a la comunidad de motociclistas con autenticidad más comprometida de México.
         </p>
 
         <div ref={buttonRef}>
@@ -86,7 +86,7 @@ export function WhatIsCta() {
               boxShadow:      '0 4px 20px rgba(232,163,59,0.40)',
             }}
           >
-            Únete a Riderpath
+            ÚNETE A RIDERPATH
           </Link>
         </div>
 

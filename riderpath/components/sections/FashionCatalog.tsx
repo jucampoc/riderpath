@@ -109,7 +109,7 @@ export function FashionCatalog() {
           ref={headingRef}
           style={{ textAlign: 'center', marginBottom: 'var(--space-7)' }}
         >
-          Jerseys Riderpath
+          VISTE EL CAMINO
         </h2>
 
         <div

@@ -49,8 +49,8 @@ export function FashionHero() {
         </p>
 
         <h1 style={{ marginBottom: 'var(--space-5)' }}>
-          <span ref={line1Ref} style={{ display: 'block' }}>Estilo que</span>
-          <span ref={line2Ref} style={{ display: 'block', color: 'var(--rp-red)' }}>cuida el planeta</span>
+          <span ref={line1Ref} style={{ display: 'block' }}>Indumentaria exclusiva</span>
+          <span ref={line2Ref} style={{ display: 'block', color: 'var(--rp-red)' }}>con propósito</span>
         </h1>
 
         <p
@@ -62,7 +62,7 @@ export function FashionHero() {
             margin:    0,
           }}
         >
-          Desde 2023, vestimos a la comunidad biker con prendas que combinan diseño, comodidad y responsabilidad ambiental.
+          Desde 2023 vestimos a motociclistas con autenticidad. Moda exclusiva, materiales responsables y diseños que representan un estilo de vida.
         </p>
 
       </div>

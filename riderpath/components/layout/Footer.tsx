@@ -78,7 +78,7 @@ export default function Footer() {
                 margin: '0 0 var(--space-5)',
               }}
             >
-              El mapa vivo de los motociclistas viajeros. Crea, difunde y colecciona rodadas.
+              La marca que conecta a motociclistas con autenticidad. Indumentaria exclusiva, comunidad y propósito.
             </p>
 
             {/* Social links — pill badges */}

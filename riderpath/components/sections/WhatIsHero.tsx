@@ -50,19 +50,19 @@ export function WhatIsHero() {
         />
 
         <p ref={eyebrowRef} className="rp-eyebrow" style={{ marginBottom: 'var(--space-4)' }}>
-          Riderpath
+          Riderpath®
         </p>
 
         <h1 style={{ marginBottom: 'var(--space-5)' }}>
-          <span ref={line1Ref} style={{ display: 'block' }}>Qué es</span>
-          <span ref={line2Ref} style={{ display: 'block', color: 'var(--rp-red)' }}>Riderpath</span>
+          <span ref={line1Ref} style={{ display: 'block' }}>La marca que representa</span>
+          <span ref={line2Ref} style={{ display: 'block', color: 'var(--rp-red)' }}>una comunidad exclusiva</span>
         </h1>
 
         <p
           ref={subtitleRef}
           style={{ fontSize: 'var(--fs-lead)', color: 'var(--text-body)', maxWidth: '60ch', margin: 0 }}
         >
-          La marca que une tecnología y pasión por las motocicletas para crear el mapa vivo de los motociclistas viajeros.
+          Motociclistas con autenticidad — ese es el corazón de Riderpath®.
         </p>
 
       </div>

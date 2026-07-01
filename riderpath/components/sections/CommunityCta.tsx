@@ -144,9 +144,9 @@ export function CommunityCta() {
             margin:        '0 0 var(--space-5)',
           }}
         >
-          Tu próxima rodada
+          TU COMUNIDAD DE
           <br />
-          ya tiene quién la ruede
+          MOTOCICLISTAS AUTÉNTICOS
         </h2>
 
         <p
@@ -160,7 +160,7 @@ export function CommunityCta() {
             margin:     '0 auto var(--space-8)',
           }}
         >
-          Únete gratis a la comunidad de motociclistas viajeros más grande de México.
+          Únete gratis y conecta con riders que comparten tu pasión por el camino y tu compromiso con el deber ser.
         </p>
 
         <Link

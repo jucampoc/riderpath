@@ -179,8 +179,8 @@ export function HeroAnimated() {
             margin:     '0 0 var(--space-8)',
           }}
         >
-          Crea tu rodada, difunde la ruta y deja que la comunidad la
-          coleccione. Riderpath es el mapa vivo de los motociclistas viajeros.
+          Riderpath® conecta a motociclistas con autenticidad. Indumentaria
+          exclusiva con propósito — y muy pronto, la app para crear, difundir y coleccionar tus rodadas.
         </p>
 
         {/* 4 — CTA buttons (delay 0.45s) */}

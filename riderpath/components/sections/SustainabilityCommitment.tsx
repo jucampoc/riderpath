@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { Recycle, Shirt, Globe } from 'lucide-react'
+import { Recycle, Shirt, Gem } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -14,12 +14,12 @@ const PROCESS_BLOCKS = [
   },
   {
     Icon:  Shirt,
-    title: 'Tela técnica',
+    title: 'Algodón premium',
     note:  'Ligera, transpirable y resistente al camino',
   },
   {
-    Icon:  Globe,
-    title: 'Menor huella ambiental',
+    Icon:  Gem,
+    title: 'Piel artesanal',
     note:  'Menos residuos, más kilómetros con conciencia',
   },
 ]
@@ -96,11 +96,11 @@ export function SustainabilityCommitment() {
             />
 
             <p ref={eyebrowRef} className="rp-eyebrow" style={{ marginBottom: 'var(--space-4)' }}>
-              Compromiso ambiental
+              Compromiso con el planeta y el rider
             </p>
 
             <h2 ref={headingRef} style={{ marginBottom: 'var(--space-6)', maxWidth: '24ch' }}>
-              Tela hecha de botellas PET recicladas
+              MATERIALES CON PROPÓSITO
             </h2>
 
             <p
@@ -113,7 +113,7 @@ export function SustainabilityCommitment() {
                 margin:     0,
               }}
             >
-              Cada jersey Riderpath está fabricado con tela elaborada a partir de botellas de plástico PET recicladas. Una prenda técnica, ligera y resistente, pensada para el camino — y para cuidar el planeta que recorremos.
+              En 2023 nos incorporamos a la industria de la moda con diseños exclusivos Riderpath®: hoodies de algodón premium y camisetas deportivas elaboradas 100% de botellas PET recicladas. En 2026, lanzamos nuestra categoría de accesorios de piel auténtica: piezas exclusivas y artesanales confeccionadas por Riderpath®.
             </p>
           </div>
 

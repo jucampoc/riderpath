@@ -46,14 +46,14 @@ export function BenefitsCta() {
       <div style={{ maxWidth: 'var(--container-prose)', margin: '0 auto', padding: '0 var(--gutter)', textAlign: 'center' }}>
 
         <h2 ref={h2Ref} style={{ color: 'var(--rp-white)', marginBottom: 'var(--space-5)' }}>
-          Empieza a aprovechar todo esto
+          VIVE EL CAMINO AL MÁXIMO
         </h2>
 
         <p
           ref={subtitleRef}
           style={{ fontSize: 'var(--fs-lead)', color: 'rgba(255,255,255,0.88)', lineHeight: 'var(--lh-body)', marginBottom: 'var(--space-8)' }}
         >
-          Únete gratis y descubre por qué cada vez más motociclistas eligen Riderpath para sus aventuras.
+          Únete a Riderpath® y accede a todo lo que necesita un motociclista con autenticidad.
         </p>
 
         <div ref={buttonRef}>
@@ -74,7 +74,7 @@ export function BenefitsCta() {
               boxShadow:      '0 4px 20px rgba(232,163,59,0.40)',
             }}
           >
-            Únete a Riderpath
+            ÚNETE A RIDERPATH
           </Link>
         </div>
 

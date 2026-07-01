@@ -72,7 +72,7 @@ export function BrandIntro() {
             maxWidth:      '28ch',
           }}
         >
-          El camino del motociclista
+          EL CAMINO DEL MOTOCICLISTA
         </h2>
 
         <p
@@ -86,7 +86,7 @@ export function BrandIntro() {
             margin:     '0 0 var(--space-4)',
           }}
         >
-          Riderpath nace para unir tecnología y comunidad motociclista. Hoy impulsamos la moda sostenible que viste a los riders; muy pronto, lanzaremos la app que te ayudará a crear, compartir y coleccionar tus rodadas.
+          Riderpath® nació en 2020 como punto de encuentro digital para motociclistas con autenticidad. Hoy vestimos a nuestra comunidad con indumentaria exclusiva de propósito; muy pronto, lanzaremos la app que te ayudará a crear, compartir y coleccionar tus rodadas.
         </p>
 
         <Link

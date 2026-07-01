@@ -82,7 +82,7 @@ export function NewsletterSection() {
             margin:        '0 0 var(--space-4)',
           }}
         >
-          Sé el primero en saber
+          SÉ EL PRIMERO EN SABER
         </h2>
 
         <p
@@ -96,7 +96,7 @@ export function NewsletterSection() {
             margin:     '0 auto var(--space-8)',
           }}
         >
-          Nuevas rodadas, eventos y funciones de la plataforma directamente en tu correo.
+          Únete a la comunidad Riderpath® y recibe novedades, lanzamientos exclusivos y el aviso de nuestra próxima app.
         </p>
 
         <form

@@ -74,7 +74,7 @@ export function FashionCta() {
             marginBottom: 'var(--space-5)',
           }}
         >
-          ¿Te interesa un jersey?
+          ¿QUIERES VESTIR EL CAMINO?
         </h2>
 
         <p
@@ -87,7 +87,7 @@ export function FashionCta() {
             lineHeight: 'var(--lh-body)',
           }}
         >
-          Escríbenos directamente y te ayudamos a elegir tu talla y modelo favorito.
+          Escríbenos y te ayudamos a encontrar la prenda perfecta para tu estilo de vida.
         </p>
 
         <Link

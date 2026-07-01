@@ -146,7 +146,7 @@ export function CommunityJoin() {
           className="rp-eyebrow"
           style={{ color: 'rgba(255,255,255,0.75)', marginBottom: 'var(--space-4)' }}
         >
-          Sé parte de Riderpath
+          Sé parte de Riderpath®
         </p>
 
         <h2
@@ -167,7 +167,7 @@ export function CommunityJoin() {
             lineHeight: 'var(--lh-body)',
           }}
         >
-          Síguenos, comparte tu rodada y conecta con miles de motociclistas viajeros en México y Latinoamérica.
+          Síguenos, comparte tu rodada y conecta con nuestra comunidad de motociclistas con autenticidad.
         </p>
 
         {/* Social cards — 4 cols desktop, 2x2 mobile */}

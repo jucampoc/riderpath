@@ -64,14 +64,14 @@ export function OriginStory() {
             </p>
 
             <h2 ref={headingRef} style={{ marginBottom: 'var(--space-5)' }}>
-              Rider + Path
+              RIDER + PATH
             </h2>
 
             <p
               ref={bodyRef}
               style={{ fontSize: 'var(--fs-body)', color: 'var(--text-body)', lineHeight: 'var(--lh-body)', margin: 0 }}
             >
-              Riderpath nace de la unión de dos palabras: Rider (motociclista) y Path (camino). Su significado es claro y directo: el camino del motociclista. La marca fue registrada en México en 2020 por Biitzu S.A.S. de C.V., con la visión de transformar cómo los motociclistas viajeros crean, comparten y coleccionan sus rutas.
+              Riderpath® es una marca mexicana creada en 2020 como punto de encuentro digital para apasionados de las rutas en moto. Desde entonces, nos esforzamos por sensibilizar y concientizar a la comunidad sobre el deber ser de un motociclista ejemplar. El nombre nace de la unión de dos palabras: Rider (motociclista) y Path (camino) — el camino del motociclista.
             </p>
           </div>
 
