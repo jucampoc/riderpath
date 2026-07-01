@@ -38,7 +38,7 @@ export default function Footer() {
     <footer
       style={{
         background: 'var(--rp-asphalt-850)',
-        borderTop: '1px solid var(--border-subtle)',
+        borderTop: '1px solid var(--border-on-dark-subtle)',
         padding: 'clamp(3rem, 5vw, 4.5rem) 0 0',
       }}
     >
@@ -97,7 +97,7 @@ export default function Footer() {
                     letterSpacing: 'var(--tracking-eyebrow)',
                     textTransform: 'uppercase',
                     color: 'var(--text-on-dark-muted)',
-                    border: '1px solid var(--border-default)',
+                    border: '1px solid var(--border-on-dark-default)',
                     borderRadius: 'var(--radius-pill)',
                     padding: 'var(--space-2) var(--space-3)',
                     transition: [
@@ -113,7 +113,7 @@ export default function Footer() {
                   onMouseLeave={e => {
                     const el = e.currentTarget as HTMLAnchorElement
                     el.style.color = 'var(--text-on-dark-muted)'
-                    el.style.borderColor = 'var(--border-default)'
+                    el.style.borderColor = 'var(--border-on-dark-default)'
                   }}
                 >
                   {label}
@@ -185,7 +185,7 @@ export default function Footer() {
             gap: 'var(--space-3)',
             marginTop: 'var(--space-7)',
             padding: 'var(--space-5) 0',
-            borderTop: '1px solid var(--border-subtle)',
+            borderTop: '1px solid var(--border-on-dark-subtle)',
           }}
         >
           <span

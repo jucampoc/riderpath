@@ -93,13 +93,17 @@
   --text-on-red:      var(--rp-white);
   --text-on-light:    var(--rp-asphalt-900);
 
-  /* Fixed "light text on a guaranteed-dark surface" — used by the Footer,
-     which intentionally stays dark in both color schemes. Do NOT add these
-     inside the @media (prefers-color-scheme: light) block. */
-  --text-on-dark-strong: var(--rp-ink-100);  /* #F6F5F2 */
-  --text-on-dark-body:   var(--rp-ink-300);  /* #C3C1BC */
-  --text-on-dark-muted:  var(--rp-ink-500);  /* #908E8B */
-  --text-on-dark-faint:  var(--rp-ink-700);  /* #65646A */
+  /* Fixed "light text/borders on a guaranteed-dark surface" — used by the
+     Footer, HeroAnimated, FeaturedSection, and any section whose background
+     is a raw palette token (--rp-asphalt-*) that never adapts to color
+     scheme. Do NOT add these inside the @media (prefers-color-scheme: light)
+     block. */
+  --text-on-dark-strong:   var(--rp-ink-100);        /* #F6F5F2 */
+  --text-on-dark-body:     var(--rp-ink-300);        /* #C3C1BC */
+  --text-on-dark-muted:    var(--rp-ink-500);        /* #908E8B */
+  --text-on-dark-faint:    var(--rp-ink-700);        /* #65646A */
+  --border-on-dark-subtle: rgba(255,255,255,0.08);   /* = dark-mode --border-subtle  */
+  --border-on-dark-default: rgba(255,255,255,0.14);  /* = dark-mode --border-default */
 
   /* Marca / interactivos */
   --brand:            var(--rp-red);

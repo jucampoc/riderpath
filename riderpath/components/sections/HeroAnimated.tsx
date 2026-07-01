@@ -155,7 +155,7 @@ export function HeroAnimated() {
             fontWeight:    700,
             letterSpacing: 'var(--tracking-display)',
             lineHeight:    'var(--lh-tight)',
-            color:         'var(--text-strong)',
+            color:         'var(--text-on-dark-strong)',
             textTransform: 'uppercase',
             margin:        '0 0 var(--space-6)',
             maxWidth:      '14ch',
@@ -173,7 +173,7 @@ export function HeroAnimated() {
           style={{
             fontFamily: 'var(--font-sans)',
             fontSize:   'var(--fs-lead)',
-            color:      'var(--text-body)',
+            color:      'var(--text-on-dark-body)',
             lineHeight: 'var(--lh-body)',
             maxWidth:   '46ch',
             margin:     '0 0 var(--space-8)',
@@ -215,7 +215,7 @@ export function HeroAnimated() {
             style={{
               display:       'inline-flex',
               alignItems:    'center',
-              color:         'var(--text-muted)',
+              color:         'var(--text-on-dark-muted)',
               fontFamily:    'var(--font-display)',
               fontWeight:    700,
               fontSize:      'var(--fs-h4)',
@@ -223,7 +223,7 @@ export function HeroAnimated() {
               textTransform: 'uppercase',
               padding:       'var(--space-4) var(--space-7)',
               borderRadius:  'var(--radius-sm)',
-              border:        '1px solid var(--border-default)',
+              border:        '1px solid var(--border-on-dark-default)',
             }}
           >
             Explorar el mapa
@@ -236,7 +236,7 @@ export function HeroAnimated() {
           className="flex flex-wrap gap-8"
           style={{
             paddingTop: 'var(--space-7)',
-            borderTop:  '1px solid var(--border-subtle)',
+            borderTop:  '1px solid var(--border-on-dark-subtle)',
           }}
         >
           {stats.map(({ value, label, accent }) => (
@@ -246,7 +246,7 @@ export function HeroAnimated() {
                 style={{
                   fontSize:     'var(--fs-h3)',
                   fontWeight:   700,
-                  color:        accent ? 'var(--accent)' : 'var(--text-strong)',
+                  color:        accent ? 'var(--accent)' : 'var(--text-on-dark-strong)',
                   lineHeight:   1,
                   marginBottom: 'var(--space-1)',
                 }}
@@ -258,7 +258,7 @@ export function HeroAnimated() {
                   fontFamily:    'var(--font-sans)',
                   fontSize:      'var(--fs-eyebrow)',
                   fontWeight:    600,
-                  color:         'var(--text-muted)',
+                  color:         'var(--text-on-dark-muted)',
                   letterSpacing: 'var(--tracking-eyebrow)',
                   textTransform: 'uppercase',
                 }}

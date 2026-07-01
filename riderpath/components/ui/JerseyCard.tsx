@@ -6,15 +6,22 @@ import Image from 'next/image'
 import gsap from 'gsap'
 
 export interface JerseyCardProps {
-  name:        string
-  frontImage:  string
-  backImage:   string
-  gender:      'hombre' | 'mujer'
+  name:              string
+  frontImage:        string
+  backImage:         string
+  gender:            'hombre' | 'mujer'
+  imagePosition?:    string
+  imageFit?:         'cover' | 'contain'
+  imageBg?:          string
+  backImagePosition?: string
+  backImageFit?:     'cover' | 'contain'
+  backImageBg?:      string
+  priority?:         boolean
 }
 
 type Side = 'front' | 'back'
 
-export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardProps) {
+export function JerseyCard({ name, frontImage, backImage, gender, imagePosition = 'center', imageFit = 'cover', imageBg, backImagePosition, backImageFit, backImageBg, priority = false }: JerseyCardProps) {
   const [side, setSide]           = useState<Side>('front')
   const [animating, setAnimating] = useState(false)
   const frontRef                  = useRef<HTMLDivElement>(null)
@@ -78,7 +85,7 @@ export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardPr
         style={{
           position:    'relative',
           aspectRatio: '3/4',
-          background:  'var(--surface-raised)',
+          background:  imageBg ?? 'var(--surface-raised)',
           overflow:    'hidden',
         }}
       >
@@ -88,18 +95,19 @@ export function JerseyCard({ name, frontImage, backImage, gender }: JerseyCardPr
             src={frontImage}
             alt={`${name} — Frente`}
             fill
-            style={{ objectFit: 'cover' }}
+            priority={priority}
+            style={{ objectFit: imageFit, objectPosition: imagePosition }}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
         </div>
 
         {/* Back image layer — always mounted, GSAP controls opacity */}
-        <div ref={backRef} style={{ position: 'absolute', inset: 0 }}>
+        <div ref={backRef} style={{ position: 'absolute', inset: 0, background: backImageBg }}>
           <Image
             src={backImage}
             alt={`${name} — Espalda`}
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: backImageFit ?? imageFit, objectPosition: backImagePosition ?? imagePosition }}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
         </div>

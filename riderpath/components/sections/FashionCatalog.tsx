@@ -14,16 +14,22 @@ const JERSEYS: JerseyCardProps[] = [
     backImage:   '/images/moda/camiseta_1_espalda_hombre.png',
   },
   {
-    name:        'Jersey Riderpath Blanco',
-    gender:      'hombre',
-    frontImage:  '/images/moda/camiseta_2_frente_hombre.png',
-    backImage:   '/images/moda/camiseta_2_espalda_hombre.png',
+    name:             'Jersey Riderpath Blanco',
+    gender:           'hombre',
+    frontImage:       '/images/moda/camiseta_2_frente_hombre.png',
+    backImage:        '/images/moda/camiseta_2_espalda_hombre.png',
+    backImageFit:     'contain',
+    backImageBg:      'var(--rp-asphalt-800)',
+    backImagePosition: 'center',
   },
   {
-    name:        'Jersey Riderpath Blanco',
-    gender:      'mujer',
-    frontImage:  '/images/moda/camiseta_2_frente_mujer.png',
-    backImage:   '/images/moda/camiseta_2_espalda_mujer.png',
+    name:          'Jersey Riderpath Blanco',
+    gender:        'mujer',
+    frontImage:    '/images/moda/camiseta_2_frente_mujer.png',
+    backImage:     '/images/moda/camiseta_2_espalda_mujer.png',
+    imagePosition: 'center 30%',
+    imageFit:      'contain',
+    imageBg:       'var(--rp-asphalt-800)',
   },
   {
     name:        'Jersey Azul Performance',
@@ -118,7 +124,7 @@ export function FashionCatalog() {
               key={`${jersey.name}-${jersey.gender}`}
               ref={(el) => { cardRefs.current[i] = el }}
             >
-              <JerseyCard {...jersey} />
+              <JerseyCard {...jersey} priority={i < 3} />
             </div>
           ))}
         </div>

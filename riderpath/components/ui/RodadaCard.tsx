@@ -146,11 +146,11 @@ export default function RodadaCard({
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 borderRadius:  'var(--radius-pill)',
-                color:         '#fff',
+                color:         'var(--rp-white)',
                 background:    'var(--rp-red)',
               }}
             >
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--rp-white)' }} />
               En vivo
             </span>
           )}
@@ -167,7 +167,7 @@ export default function RodadaCard({
               letterSpacing:  '0.06em',
               textTransform:  'uppercase',
               borderRadius:   'var(--radius-pill)',
-              color:          '#fff',
+              color:          'var(--rp-white)',
               background:     'rgba(8,8,9,0.6)',
               backdropFilter: 'blur(6px)',
               border:         '1px solid rgba(255,255,255,0.14)',
@@ -197,7 +197,7 @@ export default function RodadaCard({
               border:         '1px solid rgba(255,255,255,0.18)',
               background:     'rgba(8,8,9,0.5)',
               backdropFilter: 'blur(6px)',
-              color:          saved ? 'var(--rp-red)' : '#fff',
+              color:          saved ? 'var(--rp-red)' : 'var(--rp-white)',
               cursor:         'pointer',
               fontSize:       17,
               lineHeight:     1,

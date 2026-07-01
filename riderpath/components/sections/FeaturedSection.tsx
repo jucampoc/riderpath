@@ -107,7 +107,7 @@ export function FeaturedSection() {
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize:   'var(--fs-h2)',
-                color:      'var(--text-strong)',
+                color:      'var(--text-on-dark-strong)',
                 margin:     0,
               }}
             >
@@ -120,13 +120,13 @@ export function FeaturedSection() {
             style={{
               display:      'inline-flex',
               alignItems:   'center',
-              color:        'var(--text-muted)',
+              color:        'var(--text-on-dark-muted)',
               fontFamily:   'var(--font-sans)',
               fontWeight:   600,
               fontSize:     'var(--fs-sm)',
               padding:      'var(--space-3) var(--space-5)',
               borderRadius: 'var(--radius-sm)',
-              border:       '1px solid var(--border-default)',
+              border:       '1px solid var(--border-on-dark-default)',
             }}
           >
             Ver todas →
