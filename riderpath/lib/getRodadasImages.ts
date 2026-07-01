@@ -21,6 +21,8 @@ export function getRodadasImages(): RodadaImage[] {
       const nameWithoutExt = file.replace(/\.[^/.]+$/, '')
       const caption = nameWithoutExt
         .replace(/[-_]/g, ' ')
+        .replace(/[0-9]/g, '')
+        .replace(/[^a-zA-ZáéíóúñüÁÉÍÓÚÑÜ ,]/g, '')
         .replace(/\s+/g, ' ')
         .trim()
         .split(' ')
